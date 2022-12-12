@@ -1,0 +1,33 @@
+.item-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+  gap: 8px;
+}
+
+.item-card .field {
+  display: flex;
+}
+
+.item-card .field .field-name, .block-title {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.item-card .list {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .item-card__blocks {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .item-card__blocks {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

@@ -1,0 +1,42 @@
+.film-card {
+  margin: 20px 0;
+  overflow: auto;
+}
+
+.film-card__blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+  gap: 8px;
+}
+
+.film-card > div:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.film-card .field {
+  display: flex;
+}
+
+.film-card .field .field-name, .block-title {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.film-card .list {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .film-card__blocks {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .film-card__blocks {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

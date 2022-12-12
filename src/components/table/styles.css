@@ -1,0 +1,19 @@
+.grid-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.grid-container > div:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.table-container {
+  height: calc(100% - 75px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-container .tfooter {
+  overflow: hidden;
+}
