@@ -18,7 +18,7 @@ export const speciesState = selector({
     try {
       const page = get(speciesPage);
       // const search = get(searchCharacterValue);
-      const response = await (await fetch(`${API_ROUTES.GET_STARSHIPS}?page=${page + 1}`)).json();
+      const response = await (await fetch(`${API_ROUTES.GET_SPECIES}?page=${page + 1}`)).json();
       return {
         species: (response?.results ?? []) as Starship[],
         total: (response?.count ?? 0) as number,

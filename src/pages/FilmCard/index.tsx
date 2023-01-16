@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { Block } from '../../components/block';
+import { GridWrapper } from '../../components/grid-wrapper';
 import { ROUTES } from '../../constants/routes';
 import { getId } from '../../utils/getId';
 import { filmCardState } from './atoms';
@@ -23,9 +24,9 @@ export const FilmCard = () => {
   return (
     <>
       <header>{data.title}</header>
-      <div className='film-card'>
+      <div className="film-card">
         <Block>{data.opening_crawl}</Block>
-        <div className="film-card__blocks">
+        <GridWrapper>
           <Block>
             <div className="field">
               <div className="field-name">Episode:</div>
@@ -48,7 +49,9 @@ export const FilmCard = () => {
             <div className="block-title">Characters</div>
             <div className="list">
               {data.characters.map((item) => (
-                <div key={item} onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}>{item}</div>
+                <div key={item} onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}>
+                  {item}
+                </div>
               ))}
             </div>
           </Block>
@@ -76,7 +79,7 @@ export const FilmCard = () => {
               ))}
             </div>
           </Block>
-        </div>
+        </GridWrapper>
       </div>
     </>
   );

@@ -26,7 +26,7 @@ export const Species = () => {
           searchField="name"
           searchApi={API_ROUTES.GET_CHARACTERS}
           setSearchValue={setCurrentSearchValue}
-          // onRowClick={(id) => navigate(ROUTES.STARSHIP_CARD.replace(':id', id))}
+          onRowClick={(id) => navigate(ROUTES.SPECIES_CARD.replace(':id', id))}
         />
       </div>
     </>

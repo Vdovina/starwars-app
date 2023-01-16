@@ -1,23 +1,25 @@
-.item-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: auto;
-  gap: 8px;
+.character-card {
+  width: 100%;
+  margin: 20px 0;
 }
 
-.item-card .field {
+.character-card  .field {
   display: flex;
+  flex-wrap: wrap;
 }
 
-.item-card .field .field-name, .block-title {
+.character-card  .field .field-name, .block-title {
   margin-right: 8px;
   font-weight: bold;
 }
 
-.item-card .list {
+.character-card  .list {
+  max-height: calc(100% - 4px);
+  margin: 8px 0;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 900px) {

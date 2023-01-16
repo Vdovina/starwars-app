@@ -3,7 +3,7 @@ import { API_ROUTES } from '../../constants/routes';
 import { Character } from '../../types/Character';
 
 export const characterCardState = selectorFamily({
-  key: 'filmCard',
+  key: 'characterCard',
   get: (characterId: string) => async () => {
     try {
       if (characterId === '') {
