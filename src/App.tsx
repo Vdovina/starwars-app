@@ -14,6 +14,7 @@ import { Species } from './pages/Species';
 import { SpeciesCard } from './pages/SpeciesCard';
 import { StarshipCard } from './pages/StarshipCard';
 import { Starships } from './pages/Starships';
+import { Loader } from './components/loader';
 import './styles.css';
 
 function App() {
@@ -22,13 +23,7 @@ function App() {
       <BrowserRouter>
         <div className="app-container">
           <SideBar />
-          <Suspense
-            fallback={
-              <div className='loader'>
-                <CircularProgress color="inherit" />
-              </div>
-            }
-          >
+          <Suspense fallback={<Loader />}>
             <Routes>
               <Route path={ROUTES.FILMS} element={<Films />} />
               <Route path={ROUTES.FILM_CARD} element={<FilmCard />} />
