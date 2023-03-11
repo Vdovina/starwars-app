@@ -1,34 +1,41 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { charactersPage, charactersState, searchCharacterValue } from './atoms';
+import { page, size, charactersState, searchValue } from './atoms';
 import { columns } from './columns';
 import { API_ROUTES, ROUTES } from '../../constants/routes';
-import { Grid } from '../../components/table';
-import './styles.css';
+import './styles.scss';
+import { Grid, Input, Loader, TableWrapper } from '../../components';
+import { Suspense } from 'react';
 
 export const Characters = () => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useRecoilState(charactersPage);
-  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchCharacterValue);
+  const [currentPage, setCurrentPage] = useRecoilState(page);
+  const [currentSize, setCurrentSize] = useRecoilState(size);
+  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
   const { characters, total } = useRecoilValue(charactersState);
 
   return (
     <>
       <header>CHARACTERS</header>
-      <div className="characters">
+
+      <TableWrapper>
+        <Input label="Search characters" value={currentSearchValue} onChange={setCurrentSearchValue} />
         <Grid
           rows={characters ?? []}
           columns={columns}
           total={total}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          page={currentPage}
+          setPage={setCurrentPage}
+          size={currentSize}
+          setSize={setCurrentSize}
+
           searchValue={currentSearchValue}
           searchField="name"
           searchApi={API_ROUTES.GET_CHARACTERS}
           setSearchValue={setCurrentSearchValue}
           onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
         />
-      </div>
+      </TableWrapper>
     </>
   );
 };

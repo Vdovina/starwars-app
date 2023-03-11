@@ -1,8 +1,9 @@
+import { Suspense } from 'react';
 import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, TablePagination } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import { AsyncSearchInput } from '../../components/async-search-input';
 import { getId } from '../../utils/getId';
-import './styles.css';
+import './styles.scss';
+import { Loader } from '../loader';
 
 export type TColumn<T> = {
   id: keyof T;
@@ -18,12 +19,16 @@ interface ITableProps<T> {
   rows: any[];
   columns: TColumn<T>[];
   total: number;
-  currentPage: number;
-  setCurrentPage(page: number): void;
+  page?: number;
+  setPage?(page: number): void;
+  size?: number;
+  setSize?(size: number): void;
+
   searchValue: any;
   setSearchValue(value: any): void;
   searchField: string;
   searchApi: string;
+
   onRowClick?(id: string): void;
 }
 
@@ -31,17 +36,15 @@ export const Grid = <T extends object>({
   rows,
   columns,
   total,
-  currentPage,
-  setCurrentPage,
-  searchValue,
-  setSearchValue,
-  searchField,
-  searchApi,
+  page = 0,
+  size = 10,
+  setPage,
+  setSize,
   onRowClick,
 }: ITableProps<T>) => {
   return (
-    <div className="grid-container">
-      <AsyncSearchInput value={searchValue} apiRoute={searchApi} labelField={searchField} onChange={setSearchValue} />
+    <Suspense fallback={<Loader />}>
+      {/* <div className="grid-container"> */}
       <div className="table-container">
         <TableContainer component={Paper}>
           <Table stickyHeader aria-label="sticky table">
@@ -75,11 +78,17 @@ export const Grid = <T extends object>({
           component="div"
           className="tfooter"
           count={total}
-          rowsPerPage={10}
-          page={currentPage}
-          onPageChange={(e, page) => setCurrentPage(page)}
+          rowsPerPage={size}
+          page={page}
+          onPageChange={(_, page) => {
+            setPage && setPage(page);
+          }}
+          // onRowsPerPageChange={({ target: { value } }) => {
+          //   setSize && setSize(Number(value));
+          // }}
         />
       </div>
-    </div>
+      {/* </div> */}
+    </Suspense>
   );
 };

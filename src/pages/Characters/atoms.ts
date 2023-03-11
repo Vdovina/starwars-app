@@ -2,13 +2,18 @@ import { atom, selector, selectorFamily } from 'recoil';
 import { API_ROUTES } from '../../constants/routes';
 import type { Character } from '../../types/Character';
 
-export const charactersPage = atom({
-  key: 'charactersPage',
+export const page = atom({
+  key: 'characters/page',
   default: 0,
 });
 
-export const searchCharacterValue = atom({
-  key: 'searchCharacterValue',
+export const size = atom({
+  key: 'characters/size',
+  default: 10,
+});
+
+export const searchValue = atom({
+  key: 'character/searchValue',
   default: undefined,
 });
 
@@ -16,9 +21,10 @@ export const charactersState = selector({
   key: 'characters',
   get: async ({ get }) => {
     try {
-      const page = get(charactersPage);
-      // const search = get(searchCharacterValue);
-      const response = await (await fetch(`${API_ROUTES.GET_CHARACTERS}?page=${page + 1}`)).json();
+      const currentPage = get(page);
+      const currentSize = get(size);
+      // const search = get(searchValue);
+      const response = await (await fetch(`${API_ROUTES.GET_CHARACTERS}?page=${currentPage + 1}&size=${currentSize}`)).json();
       return {
         characters: (response?.results ?? []) as Character[],
         total: (response?.count ?? 0) as number,

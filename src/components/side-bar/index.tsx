@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import { StarWarsOutlineLogo } from '../../icons/star-wars-outline';
-import './styles.css';
+import './styles.scss';
 
 const MENU_OPTIONS = [
   {

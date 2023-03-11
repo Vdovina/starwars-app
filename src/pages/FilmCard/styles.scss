@@ -1,0 +1,43 @@
+.film-card {
+  margin: var(--offset-size-xl) 0;
+  overflow: auto;
+
+  &__blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: var(--offset-size-xs);
+  }
+  > div:not(:last-child) {
+    margin-bottom: var(--offset-size-xs);
+  }
+
+  & .field {
+    display: flex;
+    & .field-name,
+    .block-title {
+      margin-right: var(--offset-size-xs);
+      font-weight: bold;
+    }
+  }
+  & .film-card .list {
+    max-height: calc(100% - 22px);
+    margin: var(--offset-size-xs) 0;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .film-card__blocks {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .film-card__blocks {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

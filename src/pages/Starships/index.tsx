@@ -3,8 +3,8 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { starshipsPage, starshipsState, searchStarshipsValue } from './atoms';
 import { columns } from './columns';
 import { API_ROUTES, ROUTES } from '../../constants/routes';
-import { Grid } from '../../components/table';
-import './styles.css';
+import { Grid } from '../../components/grid';
+import './styles.scss';
 
 export const Starships = () => {
   const navigate = useNavigate();
@@ -20,8 +20,10 @@ export const Starships = () => {
           rows={starships ?? []}
           columns={columns}
           total={total}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          page={currentPage}
+          setPage={setCurrentPage}
+          size={10}
+          setSize={() => {}}
           searchValue={currentSearchValue}
           searchField="name"
           searchApi={API_ROUTES.GET_CHARACTERS}

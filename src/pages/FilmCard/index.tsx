@@ -6,7 +6,7 @@ import { GridWrapper } from '../../components/grid-wrapper';
 import { ROUTES } from '../../constants/routes';
 import { getId } from '../../utils/getId';
 import { filmCardState } from './atoms';
-import './styles.css';
+import './styles.scss';
 
 type UrlParams = {
   id: string;

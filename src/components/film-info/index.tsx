@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { NextIcon } from '../../icons/next-icon';
 import { ROUTES } from '../../constants/routes';
-import './styles.css';
+import './styles.scss';
 import { Film } from '../../types/Film';
 import { getId } from '../../utils/getId';
 import { Block } from '../block';

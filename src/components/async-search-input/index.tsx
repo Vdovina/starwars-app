@@ -4,21 +4,22 @@ import './styles.css';
 
 interface IAsyncSearchInputProps {
   apiRoute: string;
-  labelField: string;
+  field: string;
+  noOptionsText?: string;
   value: any;
   onChange(value: any): void;
 }
 
-export const AsyncSearchInput = ({ apiRoute, labelField, value, onChange }: IAsyncSearchInputProps) => {
+export const AsyncSearchInput = ({ apiRoute, field, noOptionsText, value, onChange }: IAsyncSearchInputProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
   const [options, setOptions] = useState<any[]>([]);
 
   useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
+    // if (!open) {
+    //   setOptions([]);
+    // }
   }, [open]);
 
   useEffect(() => {
@@ -36,21 +37,27 @@ export const AsyncSearchInput = ({ apiRoute, labelField, value, onChange }: IAsy
     } else {
       setOptions([]);
     }
-  }, [inputValue]);
+  }, [apiRoute, inputValue]);
 
   return (
     <Autocomplete
+      autoComplete
       id="search"
       className="autocomplete-input"
+      noOptionsText={noOptionsText}
+      options={options}
       value={value}
-      onChange={(e, val) => onChange(val)}
+      getOptionLabel={(option) => option[field]}
+      onChange={(_, val) => onChange(val)}
+      
+      
       open={open}
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
-      isOptionEqualToValue={(option, value) => option[labelField] === value[labelField]}
-      getOptionLabel={(option) => option[labelField]}
-      options={options}
+      isOptionEqualToValue={(option, value) => option[field] === value[field]}
+      
       loading={loading}
+      size="small"
       renderInput={(params) => (
         <TextField
           {...params}

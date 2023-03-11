@@ -1,5 +1,5 @@
 import { CircularProgress } from '@mui/material';
-import './styles.css';
+import './styles.scss';
 
 export const Loader = () => (
   <div className="loader">

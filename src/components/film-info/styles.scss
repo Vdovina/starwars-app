@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 200px auto 20px;
   align-items: center;
-  gap: 16px;
+  gap: var(--offset-size-lg);
 }
 
 .film-info__title {
@@ -36,6 +36,6 @@
 }
 
 .film-info__info .field-name {
-  margin-right: 8px;
+  margin-right: var(--offset-size-xs);
   font-weight: bold;
 }

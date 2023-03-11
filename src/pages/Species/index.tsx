@@ -3,8 +3,8 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { speciesPage, speciesState, searchSpeciesValue } from './atoms';
 import { columns } from './columns';
 import { API_ROUTES, ROUTES } from '../../constants/routes';
-import { Grid } from '../../components/table';
-import './styles.css';
+import { Grid } from '../../components/grid';
+import './styles.scss';
 
 export const Species = () => {
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ export const Species = () => {
           rows={species ?? []}
           columns={columns}
           total={total}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
+          page={currentPage}
+          setPage={setCurrentPage}
           searchValue={currentSearchValue}
           searchField="name"
           searchApi={API_ROUTES.GET_CHARACTERS}

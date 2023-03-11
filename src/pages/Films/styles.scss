@@ -1,0 +1,8 @@
+.films {
+  margin: var(--offset-size-xl) 0;
+  overflow: auto;
+}
+
+.films-list > div:not(:last-child) {
+  margin-bottom: var(--offset-size-xs);
+}

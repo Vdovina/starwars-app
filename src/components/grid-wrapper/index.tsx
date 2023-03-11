@@ -1,10 +1,12 @@
 import { HTMLAttributes } from 'react';
 import classnames from 'classnames';
-import './styles.css';
+import './styles.scss';
 
-type IBlockProps = HTMLAttributes<HTMLDivElement>;
-
-export const GridWrapper = ({ children, className = '', ...props }: IBlockProps) => {
+export const GridWrapper = ({
+  children,
+  className = '',
+  ...props
+}: React.PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => {
   return (
     <div className={classnames('item-card', className)} {...props}>
       {children}

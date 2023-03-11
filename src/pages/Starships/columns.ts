@@ -1,4 +1,4 @@
-import { TColumn } from '../../components/table';
+import { TColumn } from '../../components/grid';
 import { Starship } from '../../types/Starship';
 
 export const columns: TColumn<Starship>[] = [

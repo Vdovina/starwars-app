@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { CircularProgress } from '@mui/material';
 import { RecoilRoot } from 'recoil';
 import { SideBar } from './components/side-bar';
 import { ROUTES } from './constants/routes';
@@ -15,7 +14,7 @@ import { SpeciesCard } from './pages/SpeciesCard';
 import { StarshipCard } from './pages/StarshipCard';
 import { Starships } from './pages/Starships';
 import { Loader } from './components/loader';
-import './styles.css';
+import './styles/styles.scss';
 
 function App() {
   return (

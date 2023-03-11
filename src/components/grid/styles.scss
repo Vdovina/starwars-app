@@ -1,19 +1,17 @@
 .grid-container {
   height: 100%;
   overflow: hidden;
+  & > div:not(:last-child) {
+    margin-bottom: var(--offset-size-xs);
+  }
 }
 
-.grid-container > div:not(:last-child) {
-  margin-bottom: 8px;
-}
-
-.table-container {
+.grid-container .table-container {
   height: calc(100% - 75px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-}
-
-.table-container .tfooter {
-  overflow: hidden;
+  &.tfooter {
+    overflow: hidden;
+  }
 }

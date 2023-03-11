@@ -1,8 +1,0 @@
-.films {
-  margin: 20px 0;
-  overflow: auto;
-}
-
-.films-list > div:not(:last-child) {
-  margin-bottom: 8px;
-}

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 import { FilmInfo } from '../../components/film-info';
 import { filmsState } from './atoms';
-import './styles.css';
+import './styles.scss';
 
 export const Films = () => {
   const films = useRecoilValue(filmsState);

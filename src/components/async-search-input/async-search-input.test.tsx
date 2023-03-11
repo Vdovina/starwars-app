@@ -6,6 +6,6 @@ const api = '';
 
 describe('Async search input testing', () => {
   const [value, setValue] = useState('');
-  render(<AsyncSearchInput value={value} apiRoute={api} labelField="Search" onChange={setValue} />);
+  render(<AsyncSearchInput value={value} apiRoute={api} field="Search" onChange={setValue} />);
   // const userInput = screen.getByTestId("input-field");
 });
