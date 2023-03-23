@@ -1,13 +1,10 @@
-import { Suspense } from 'react';
-import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, TablePagination } from '@mui/material';
-import Paper from '@mui/material/Paper';
+import classNames from 'classnames';
+import { useTable, Column } from 'react-table';
 import { getId } from '../../utils/getId';
 import './styles.scss';
-import { Loader } from '../loader';
 
-export type TColumn<T> = {
-  id: keyof T;
-  label: string;
+export type TColumn<T> = Omit<Column, 'accessor'> & {
+  accessor: keyof T;
 };
 
 export type TRow<T> = T & {
@@ -23,6 +20,7 @@ interface ITableProps<T> {
   setPage?(page: number): void;
   size?: number;
   setSize?(size: number): void;
+  loading?: boolean;
 
   searchValue: any;
   setSearchValue(value: any): void;
@@ -33,62 +31,77 @@ interface ITableProps<T> {
 }
 
 export const Grid = <T extends object>({
-  rows,
+  rows: data,
   columns,
   total,
   page = 0,
   size = 10,
+  loading,
   setPage,
   setSize,
   onRowClick,
 }: ITableProps<T>) => {
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
+    columns,
+    data,
+  });
+
   return (
-    <Suspense fallback={<Loader />}>
-      {/* <div className="grid-container"> */}
+    <>
       <div className="table-container">
-        <TableContainer component={Paper}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell key={String(column.id)}>{column.label}</TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  hover
+        <table {...getTableProps()}>
+          <thead>
+            <tr {...headerGroups[0].getHeaderGroupProps()}>
+              {headerGroups[0].headers.map((column) => (
+                <th
+                  key={column.id}
+                  {...column.getHeaderProps({
+                    className: classNames(column.className),
+                    style: column.style,
+                  })}
+                >
+                  <div>{column.render('Header')}</div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.length === 0 && (
+              <div className="msg-placeholder">
+                <div className="msg-error">Information not found</div>
+              </div>
+            )}
+            {rows.map((row) => {
+              prepareRow(row);
+              return (
+                <tr
+                  {...row.getRowProps()}
+                  key={row.id}
                   onClick={() => {
                     if (onRowClick) {
-                      onRowClick(getId(row.url));
+                      onRowClick(getId(row.original.url));
                     }
                   }}
                 >
-                  {columns.map((column) => (
-                    <TableCell key={String(column.id)}>{row[column.id]}</TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          component="div"
-          className="tfooter"
-          count={total}
-          rowsPerPage={size}
-          page={page}
-          onPageChange={(_, page) => {
-            setPage && setPage(page);
-          }}
-          // onRowsPerPageChange={({ target: { value } }) => {
-          //   setSize && setSize(Number(value));
-          // }}
-        />
+                  {row.cells.map((cell) => {
+                    return (
+                      <td
+                        {...cell.getCellProps({
+                          className: cell.column.className,
+                          style: cell.column.style,
+                        })}
+                        key={cell.id}
+                      >
+                        {cell.render('Cell')}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
-      {/* </div> */}
-    </Suspense>
+    </>
   );
 };

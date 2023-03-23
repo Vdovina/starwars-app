@@ -3,23 +3,23 @@ import { Species } from '../../types/Species';
 
 export const columns: TColumn<Species>[] = [
   {
-    id: 'name',
-    label: 'Name',
+    accessor: 'name',
+    Header: 'Name',
   },
   {
-    id: 'classification',
-    label: 'Classification',
+    accessor: 'classification',
+    Header: 'Classification',
   },
   {
-    id: 'designation',
-    label: 'Designation',
+    accessor: 'designation',
+    Header: 'Designation',
   },
   {
-    id: 'language',
-    label: 'Language',
+    accessor: 'language',
+    Header: 'Language',
   },
   {
-    id: 'average_lifespan',
-    label: 'Average Lifespan',
+    accessor: 'average_lifespan',
+    Header: 'Average Lifespan',
   },
 ];

@@ -3,31 +3,31 @@ import { Character } from '../../types/Character';
 
 export const columns: TColumn<Character>[] = [
   {
-    id: 'name',
-    label: 'Name',
+    accessor: 'name',
+    Header: 'Name',
   },
   {
-    id: 'birth_year',
-    label: 'Birth Year',
+    accessor: 'birth_year',
+    Header: 'Birth Year',
   },
   {
-    id: 'gender',
-    label: 'Gender',
+    accessor: 'gender',
+    Header: 'Gender',
   },
   {
-    id: 'mass',
-    label: 'Mass',
+    accessor: 'mass',
+    Header: 'Mass',
   },
   {
-    id: 'height',
-    label: 'Height',
+    accessor: 'height',
+    Header: 'Height',
   },
   {
-    id: 'hair_color',
-    label: 'Hair Color',
+    accessor: 'hair_color',
+    Header: 'Hair Color',
   },
   {
-    id: 'eye_color',
-    label: 'Eye Color',
+    accessor: 'eye_color',
+    Header: 'Eye Color',
   },
 ];

@@ -24,7 +24,9 @@ export const charactersState = selector({
       const currentPage = get(page);
       const currentSize = get(size);
       // const search = get(searchValue);
-      const response = await (await fetch(`${API_ROUTES.GET_CHARACTERS}?page=${currentPage + 1}&size=${currentSize}`)).json();
+      const response = await (
+        await fetch(`${API_ROUTES.GET_CHARACTERS}?page=${currentPage + 1}&size=${currentSize}`)
+      ).json();
       return {
         characters: (response?.results ?? []) as Character[],
         total: (response?.count ?? 0) as number,
@@ -33,4 +35,5 @@ export const charactersState = selector({
       throw error;
     }
   },
+  set: async ({ set, get }) => {},
 });

@@ -3,23 +3,23 @@ import { Starship } from '../../types/Starship';
 
 export const columns: TColumn<Starship>[] = [
   {
-    id: 'name',
-    label: 'Name',
+    accessor: 'name',
+    Header: 'Name',
   },
   {
-    id: 'model',
-    label: 'Model',
+    accessor: 'model',
+    Header: 'Model',
   },
   {
-    id: 'manufacturer',
-    label: 'Manufacturer',
+    accessor: 'manufacturer',
+    Header: 'Manufacturer',
   },
   {
-    id: 'length',
-    label: 'Length',
+    accessor: 'length',
+    Header: 'Length',
   },
   {
-    id: 'passengers',
-    label: 'Passengers',
+    accessor: 'passengers',
+    Header: 'Passengers',
   },
 ];

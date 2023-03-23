@@ -3,27 +3,27 @@ import { Planet } from '../../types/Planet';
 
 export const columns: TColumn<Planet>[] = [
   {
-    id: 'name',
-    label: 'Name',
+    accessor: 'name',
+    Header: 'Name',
   },
   {
-    id: 'diameter',
-    label: 'Diameter',
+    accessor: 'diameter',
+    Header: 'Diameter',
   },
   {
-    id: 'climate',
-    label: 'Climate',
+    accessor: 'climate',
+    Header: 'Climate',
   },
   {
-    id: 'gravity',
-    label: 'Gravity',
+    accessor: 'gravity',
+    Header: 'Gravity',
   },
   {
-    id: 'terrain',
-    label: 'Terrain',
+    accessor: 'terrain',
+    Header: 'Terrain',
   },
   {
-    id: 'population',
-    label: 'Population',
+    accessor: 'population',
+    Header: 'Population',
   },
 ];

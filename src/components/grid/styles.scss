@@ -1,17 +1,69 @@
-.grid-container {
+.table-container {
   height: 100%;
   overflow: hidden;
-  & > div:not(:last-child) {
-    margin-bottom: var(--offset-size-xs);
-  }
-}
-
-.grid-container .table-container {
-  height: calc(100% - 75px);
-  overflow: hidden;
+  margin-bottom: var(--offset-size-xs);
   display: flex;
   flex-direction: column;
-  &.tfooter {
-    overflow: hidden;
+  background: var(--white);
+  border-radius: var(--border-radius);
+
+  table {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    overflow-y: hidden;
+    cursor: default;
+
+    thead {
+      width: 100%;
+      display: block;
+      overflow-y: scroll;
+      box-shadow: 0 0 5px 0 var(--gray);
+      th {
+        padding: var(--offset-size-lg) var(--offset-size-xs);
+        flex: 1;
+        font-weight: 600;
+        text-align: left;
+      }
+    }
+
+    tbody {
+      display: block;
+      width: 100%;
+      height: 100%;
+      flex: 1;
+      position: relative;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      tr {
+        cursor: pointer;
+        &:hover {
+          background-color: var(--light-gray);
+        }
+      }
+      td {
+        padding: var(--offset-size-lg) var(--offset-size-xs);
+        flex: 1;
+        border-bottom: 1px solid var(--gray);
+        text-align: left;
+      }
+    }
+
+    tr {
+      display: flex;
+      width: 100%;
+      &:last-child td {
+        border: 0;
+      }
+    }
+
+    .msg-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
