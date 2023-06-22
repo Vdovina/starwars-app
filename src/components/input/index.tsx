@@ -9,5 +9,14 @@ interface InputProps {
 }
 
 export const Input = ({ label, value, onChange }: InputProps) => {
-  return <TextField className='input-wrapper' fullWidth size='small' label={label} value={value ?? ''} onChange={({ target: { value } }) => onChange(value)} />;
+  return (
+    <TextField
+      className="input-wrapper"
+      fullWidth
+      size="small"
+      label={label}
+      value={value ?? ''}
+      onChange={({ target: { value } }) => onChange(value)}
+    />
+  );
 };

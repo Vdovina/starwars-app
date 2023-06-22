@@ -1,5 +1,6 @@
-export enum STATUSES {
-  LOADING = 'loading',
-  ERROR = 'hasError',
-  SUCCESS = 'hasValue',
+export enum LoadingStatus {
+  Idle = 'idle',
+  Loading = 'loading',
+  Error = 'hasError',
+  Success = 'hasValue',
 }
