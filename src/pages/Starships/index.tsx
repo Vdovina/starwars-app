@@ -1,29 +1,38 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useRecoilState } from 'recoil';
-import { starshipsPage, starshipsState, searchStarshipsValue } from './atoms';
+import { useRecoilState } from 'recoil';
+import { starshipsState, searchValue } from './atoms';
 import { columns } from './columns';
-import { API_ROUTES, ROUTES } from '../../constants/routes';
-import { Grid } from '../../components/grid';
+import { ROUTES } from '../../constants/routes';
+import { Grid, SearchInput, TableWrapper } from '../../components';
+import { PAGE_SIZE } from '../../constants/constants';
+import { useVirtualScrolling } from '../../use/useVirtualScrolling';
+import { getMergedStarshipList } from '../../service/starshipService';
 import './styles.scss';
 
 export const Starships = () => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useRecoilState(starshipsPage);
-  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchStarshipsValue);
-  const { starships, total } = useRecoilValue(starshipsState);
+  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
+
+  const { data, loading, onScroll } = useVirtualScrolling(starshipsState, getMergedStarshipList, currentSearchValue, 5000);
 
   return (
     <>
       <header>STARSHIPS</header>
-      <div className="starships">
+
+      <TableWrapper>
+        <div className="search-panel">
+          <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
+        </div>
         <Grid
-          rows={starships ?? []}
+          rows={data?.data ?? []}
           columns={columns}
-          total={total}
-          size={10}
-          onRowClick={(id) => navigate(ROUTES.STARSHIP_CARD.replace(':id', id))}
+          total={data?.total}
+          loading={loading}
+          onLoad={onScroll}
+          size={PAGE_SIZE}
+          onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
         />
-      </div>
+      </TableWrapper>
     </>
   );
 };

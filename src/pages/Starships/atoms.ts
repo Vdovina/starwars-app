@@ -1,30 +1,31 @@
 import { atom, selector } from 'recoil';
-import { API_ROUTES } from '../../constants/routes';
-import { Starship } from '../../types/Starship';
+import type { Starship } from '../../types/Starship';
+import type { CollectionState } from '../../types/CollectionState';
+import { DEFAULT_PAGES } from '../../constants/constants';
+import { getMergedStarshipList } from '../../service/starshipService';
 
-export const starshipsPage = atom({
-  key: 'starshipsPage',
-  default: 0,
+export type CharacterListState = CollectionState<Starship>;
+
+export const searchValue = atom({
+  key: 'starships/searchValue',
+  default: '',
 });
 
-export const searchStarshipsValue = atom({
-  key: 'searchStarshipsValue',
-  default: undefined,
-});
-
-export const starshipsState = selector({
-  key: 'starships',
-  get: async ({ get }) => {
-    try {
-      const page = get(starshipsPage);
-      // const search = get(searchCharacterValue);
-      const response = await (await fetch(`${API_ROUTES.GET_STARSHIPS}?page=${page + 1}`)).json();
-      return {
-        starships: (response?.results ?? []) as Starship[],
-        total: (response?.count ?? 0) as number,
-      };
-    } catch (error) {
-      throw error;
-    }
-  },
+export const starshipsState = atom({
+  key: 'starships/data',
+  default: selector({
+    key: '#starships/data',
+    get: async ({ get }) => {
+      try {
+        const searchParam = get(searchValue);
+        const response = await getMergedStarshipList(DEFAULT_PAGES, { searchParam });
+        return {
+          data: response?.results ?? [],
+          total: response?.count ?? 0,
+        };
+      } catch (error) {
+        throw error;
+      }
+    },
+  }),
 });

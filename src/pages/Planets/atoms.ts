@@ -1,30 +1,31 @@
-import { atom, selector, selectorFamily } from 'recoil';
-import { API_ROUTES } from '../../constants/routes';
-import type { Character } from '../../types/Character';
+import { atom, selector } from 'recoil';
+import type { Planet } from '../../types/Planet';
+import { CollectionState } from '../../types/CollectionState';
+import { DEFAULT_PAGES } from '../../constants/constants';
+import { getMergedPlanetsList } from '../../service/planetsService';
 
-export const planetsPage = atom({
-  key: 'planetsPage',
-  default: 0,
+export type CharacterListState = CollectionState<Planet>;
+
+export const searchValue = atom({
+  key: 'planets/searchValue',
+  default: '',
 });
 
-export const searchPlanetsValue = atom({
-  key: 'searchPlanetsValue',
-  default: undefined,
-});
-
-export const planetsState = selector({
-  key: 'planets',
-  get: async ({ get }) => {
-    try {
-      const page = get(planetsPage);
-      // const search = get(searchCharacterValue);
-      const response = await (await fetch(`${API_ROUTES.GET_PLANETS}?page=${page + 1}`)).json();
-      return {
-        planets: (response?.results ?? []) as Character[],
-        total: (response?.count ?? 0) as number,
-      };
-    } catch (error) {
-      throw error;
-    }
-  },
+export const planetsState = atom({
+  key: 'planets/data',
+  default: selector({
+    key: '#planets/data',
+    get: async ({ get }) => {
+      try {
+        const searchParam = get(searchValue);
+        const response = await getMergedPlanetsList(DEFAULT_PAGES, { searchParam });
+        return {
+          data: response?.results ?? [],
+          total: response?.count ?? 0,
+        };
+      } catch (error) {
+        throw error;
+      }
+    },
+  }),
 });

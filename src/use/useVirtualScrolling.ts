@@ -4,11 +4,11 @@ import { LoadingStatus } from '../constants/statuses';
 import { useThrottling } from './useThrottling';
 import { CollectionState } from '../types/CollectionState';
 import { MultipleCollectionResponse } from '../types/CollectionResponse';
-import { QueryParams } from '../types/QueryParams';
+import { AdditionalQueryParams } from '../types/QueryParams';
 import { DEFAULT_PAGES } from '../constants/constants';
 import { RecoilLoadingStatus } from '../types/RecoilLoadingStatus';
 
-export type FetchCallbackType<T> = (pages: number[], queryParams?: QueryParams) => Promise<MultipleCollectionResponse<T>>;
+export type FetchCallbackType<T> = (pages: number[], queryParams?: AdditionalQueryParams) => Promise<MultipleCollectionResponse<T>>;
 
 export const useVirtualScrolling = <T>(
   recoilAtom,

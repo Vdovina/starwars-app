@@ -35,7 +35,7 @@ export const Characters = () => {
           rows={data?.data ?? []}
           columns={columns}
           total={data?.total}
-          loading={LoadingStatus.Loading}
+          loading={loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
           onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}

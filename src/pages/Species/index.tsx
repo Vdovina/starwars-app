@@ -1,28 +1,38 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useRecoilState } from 'recoil';
-import { speciesPage, speciesState, searchSpeciesValue } from './atoms';
+import { useRecoilState } from 'recoil';
+import { searchValue, speciesState } from './atoms';
 import { columns } from './columns';
-import { API_ROUTES, ROUTES } from '../../constants/routes';
-import { Grid } from '../../components/grid';
+import { ROUTES } from '../../constants/routes';
+import { useVirtualScrolling } from '../../use/useVirtualScrolling';
+import { Grid, SearchInput, TableWrapper } from '../../components';
+import { PAGE_SIZE } from '../../constants/constants';
+import { getMergedSpeciesList } from '../../service/speciesService';
 import './styles.scss';
 
 export const Species = () => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useRecoilState(speciesPage);
-  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchSpeciesValue);
-  const { species, total } = useRecoilValue(speciesState);
+  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
+
+  const { data, loading, onScroll } = useVirtualScrolling(speciesState, getMergedSpeciesList, currentSearchValue, 5000);
 
   return (
     <>
       <header>SPECIES</header>
-      <div className="species">
+
+      <TableWrapper>
+        <div className="search-panel">
+          <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
+        </div>
         <Grid
-          rows={species ?? []}
+          rows={data?.data ?? []}
           columns={columns}
-          total={total}
-          onRowClick={(id) => navigate(ROUTES.SPECIES_CARD.replace(':id', id))}
+          total={data?.total}
+          loading={loading}
+          onLoad={onScroll}
+          size={PAGE_SIZE}
+          onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
         />
-      </div>
+      </TableWrapper>
     </>
   );
 };
