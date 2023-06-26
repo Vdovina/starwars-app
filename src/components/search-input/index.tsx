@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { SearchIcon } from '../../icons/search-icon';
 import { Input } from '../input';
-import { useDebounce } from '../../use/useDebounce';
+import { useDebounce } from '../../use/use-debounce';
 
 export const SearchInput = ({ value, onChange }) => {
   const [currentValue, setCurrentValue] = useState('');
@@ -13,7 +13,7 @@ export const SearchInput = ({ value, onChange }) => {
 
   useEffect(() => {
     onChange(debounsedValue);
-  }, [debounsedValue]);
+  }, [debounsedValue, onChange]);
 
   return (
     <Input firstIcon={<SearchIcon />} placeholder="Search characters" value={currentValue} onChange={setCurrentValue} />

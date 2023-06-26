@@ -3,10 +3,10 @@ import { useRecoilState } from 'recoil';
 import { searchValue, speciesState } from './atoms';
 import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
-import { useVirtualScrolling } from '../../use/useVirtualScrolling';
-import { Grid, SearchInput, TableWrapper } from '../../components';
+import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
+import { Table, SearchInput, TableWrapper } from '../../components';
 import { PAGE_SIZE } from '../../constants/constants';
-import { getMergedSpeciesList } from '../../service/speciesService';
+import { getMergedSpeciesList } from '../../service/species-service';
 import './styles.scss';
 
 export const Species = () => {
@@ -23,7 +23,7 @@ export const Species = () => {
         <div className="search-panel">
           <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
-        <Grid
+        <Table
           rows={data?.data ?? []}
           columns={columns}
           total={data?.total}

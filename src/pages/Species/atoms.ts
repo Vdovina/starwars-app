@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil';
-import type { CollectionState } from '../../types/CollectionState';
-import type { Species } from '../../types/Species';
-import { getMergedSpeciesList } from '../../service/speciesService';
+import type { CollectionState } from '../../types/collection-state';
+import type { Species } from '../../types/species';
+import { getMergedSpeciesList } from '../../service/species-service';
 import { DEFAULT_PAGES } from '../../constants/constants';
 
 export type CharacterListState = CollectionState<Species>;

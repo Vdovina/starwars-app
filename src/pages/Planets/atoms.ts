@@ -1,8 +1,8 @@
 import { atom, selector } from 'recoil';
-import type { Planet } from '../../types/Planet';
-import { CollectionState } from '../../types/CollectionState';
+import type { Planet } from '../../types/planet';
+import { CollectionState } from '../../types/collection-state';
 import { DEFAULT_PAGES } from '../../constants/constants';
-import { getMergedPlanetsList } from '../../service/planetsService';
+import { getMergedPlanetsList } from '../../service/planets-service';
 
 export type CharacterListState = CollectionState<Planet>;
 

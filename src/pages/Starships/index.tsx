@@ -3,10 +3,10 @@ import { useRecoilState } from 'recoil';
 import { starshipsState, searchValue } from './atoms';
 import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
-import { Grid, SearchInput, TableWrapper } from '../../components';
+import { Table, SearchInput, TableWrapper } from '../../components';
 import { PAGE_SIZE } from '../../constants/constants';
-import { useVirtualScrolling } from '../../use/useVirtualScrolling';
-import { getMergedStarshipList } from '../../service/starshipService';
+import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
+import { getMergedStarshipList } from '../../service/starship-service';
 import './styles.scss';
 
 export const Starships = () => {
@@ -23,7 +23,7 @@ export const Starships = () => {
         <div className="search-panel">
           <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
-        <Grid
+        <Table
           rows={data?.data ?? []}
           columns={columns}
           total={data?.total}

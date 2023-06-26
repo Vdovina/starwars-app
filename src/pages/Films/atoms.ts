@@ -1,6 +1,6 @@
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { selector } from 'recoil';
 import { API_ROUTES } from '../../constants/routes';
-import { Film } from '../../types/Film';
+import { Film } from '../../types/film';
 
 export const filmsState = selector({
   key: 'films',

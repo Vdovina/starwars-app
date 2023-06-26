@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridWrapper Tests GridWrapper render 1`] = `
+<div
+  className="item-card"
+>
+  <div>
+    Block1
+  </div>
+  <div>
+    Block2
+  </div>
+  <div>
+    Block3
+  </div>
+  <div>
+    Block4
+  </div>
+</div>
+`;

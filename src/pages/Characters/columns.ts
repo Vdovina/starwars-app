@@ -1,5 +1,5 @@
-import { TColumn } from '../../components/grid';
-import { Character } from '../../types/Character';
+import { TColumn } from '../../components/table';
+import { Character } from '../../types/character';
 
 export const columns: TColumn<Character>[] = [
   {

@@ -25,7 +25,13 @@ export const Input = ({ className, clearable = false, firstIcon, label, placehol
           value={value}
           onChange={({ target }) => onChange(target.value)}
         />
-        <div className="input__actions">{clearable && <CloseIcon />}</div>
+        <div className="input__actions">
+          {clearable && (
+            <div onClick={() => onChange('')}>
+              <CloseIcon />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

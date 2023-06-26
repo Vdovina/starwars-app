@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input Tests Input firstIcon 1`] = `
+<div
+  className="input__wrapper"
+>
+  <div
+    className="input__container"
+  >
+    <div
+      className="input__first-icon"
+    >
+      <div>
+        SomeNode
+      </div>
+    </div>
+    <input
+      className="input__component input__with-icon"
+      onChange={[Function]}
+      placeholder=""
+      value="Test"
+    />
+    <div
+      className="input__actions"
+    />
+  </div>
+</div>
+`;
+
+exports[`Input Tests Input render 1`] = `
+<div
+  className="input__wrapper custom-class"
+>
+  <span
+    className="input__label"
+  >
+    Label
+  </span>
+  <div
+    className="input__container"
+  >
+    <input
+      className="input__component"
+      onChange={[Function]}
+      placeholder="Placeholder"
+      value="Test"
+    />
+    <div
+      className="input__actions"
+    />
+  </div>
+</div>
+`;

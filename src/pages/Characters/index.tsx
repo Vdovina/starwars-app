@@ -3,9 +3,9 @@ import { useRecoilState } from 'recoil';
 import { searchValue, charactersState } from './atoms';
 import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
-import { Grid, SearchInput, TableWrapper } from '../../components';
-import { getMergedCharacterList } from '../../service/characterService';
-import { useVirtualScrolling } from '../../use/useVirtualScrolling';
+import { Table, SearchInput, TableWrapper } from '../../components';
+import { getMergedCharacterList } from '../../service/character-service';
+import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
 import { PAGE_SIZE } from '../../constants/constants';
 import './styles.scss';
 
@@ -28,7 +28,7 @@ export const Characters = () => {
         <div className="search-panel">
           <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
-        <Grid
+        <Table
           rows={data?.data ?? []}
           columns={columns}
           total={data?.total}

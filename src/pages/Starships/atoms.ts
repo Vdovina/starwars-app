@@ -1,8 +1,8 @@
 import { atom, selector } from 'recoil';
-import type { Starship } from '../../types/Starship';
-import type { CollectionState } from '../../types/CollectionState';
+import type { Starship } from '../../types/starship';
+import type { CollectionState } from '../../types/collection-state';
 import { DEFAULT_PAGES } from '../../constants/constants';
-import { getMergedStarshipList } from '../../service/starshipService';
+import { getMergedStarshipList } from '../../service/starship-service';
 
 export type CharacterListState = CollectionState<Starship>;
 

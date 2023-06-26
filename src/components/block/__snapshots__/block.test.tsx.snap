@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Block Tests Block render 1`] = `
+<div
+  className="block"
+>
+  <div
+    className="block__title"
+  >
+    BlockTitle
+  </div>
+  ChildrenNode
+</div>
+`;

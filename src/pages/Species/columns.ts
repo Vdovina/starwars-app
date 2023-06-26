@@ -1,5 +1,5 @@
-import { TColumn } from '../../components/grid';
-import { Species } from '../../types/Species';
+import { TColumn } from '../../components/table';
+import { Species } from '../../types/species';
 
 export const columns: TColumn<Species>[] = [
   {

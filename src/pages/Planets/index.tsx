@@ -3,9 +3,9 @@ import { useRecoilState } from 'recoil';
 import { planetsState, searchValue } from './atoms';
 import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
-import { useVirtualScrolling } from '../../use/useVirtualScrolling';
-import { getMergedPlanetsList } from '../../service/planetsService';
-import { Grid, SearchInput, TableWrapper } from '../../components';
+import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
+import { getMergedPlanetsList } from '../../service/planets-service';
+import { Table, SearchInput, TableWrapper } from '../../components';
 import { PAGE_SIZE } from '../../constants/constants';
 import './styles.scss';
 
@@ -23,7 +23,7 @@ export const Planets = () => {
         <div className="search-panel">
           <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
-        <Grid
+        <Table
           rows={data?.data ?? []}
           columns={columns}
           total={data?.total}

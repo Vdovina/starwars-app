@@ -5,7 +5,7 @@ import { Input } from './input';
 import { FilmInfo } from './film-info';
 import { Loader } from './loader';
 import { SideBar } from './side-bar';
-import { Grid } from './grid';
+import { Table } from './table';
 import { SearchInput } from './search-input';
 
-export { Block, Grid, GridWrapper, FilmInfo, Input, Loader, SearchInput, SideBar, TableWrapper };
+export { Block, Table, GridWrapper, FilmInfo, Input, Loader, SearchInput, SideBar, TableWrapper };

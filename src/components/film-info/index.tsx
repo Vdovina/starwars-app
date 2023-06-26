@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { NextIcon } from '../../icons/next-icon';
 import { ROUTES } from '../../constants/routes';
-import './styles.scss';
-import { Film } from '../../types/Film';
-import { getId } from '../../utils/getId';
+import { Film } from '../../types/film';
+import { getId } from '../../utils/get-id';
 import { Block } from '../block';
+import './styles.scss';
 
 interface IFilmInfoProps {
   film: Film;
