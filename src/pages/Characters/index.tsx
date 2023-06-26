@@ -7,6 +7,7 @@ import { Grid, SearchInput, TableWrapper } from '../../components';
 import { getMergedCharacterList } from '../../service/characterService';
 import { useVirtualScrolling } from '../../use/useVirtualScrolling';
 import { PAGE_SIZE } from '../../constants/constants';
+import { LoadingStatus } from '../../constants/statuses';
 import './styles.scss';
 
 export const Characters = () => {
@@ -34,7 +35,7 @@ export const Characters = () => {
           rows={data?.data ?? []}
           columns={columns}
           total={data?.total}
-          loading={loading}
+          loading={LoadingStatus.Loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
           onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
