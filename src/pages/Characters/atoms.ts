@@ -1,24 +1,14 @@
-import { atom, selector, selectorFamily } from 'recoil';
-import { API_ROUTES } from '../../constants/routes';
+import { atom, selector } from 'recoil';
+import { DEFAULT_PAGES } from '../../constants/constants';
+import { getMergedCharacterList } from '../../service/characterService';
 import type { Character } from '../../types/Character';
-import { getCharacterList, getMergedCharacterList } from '../../service/characterService';
-import { CollectionState } from '../../types/CollectionState';
+import type { CollectionState } from '../../types/CollectionState';
 
 export type CharacterListState = CollectionState<Character>;
 
-export const pages = atom({
-  key: 'characters/pages',
-  default: [0, 1],
-});
-
-export const size = atom({
-  key: 'characters/size',
-  default: 10,
-});
-
 export const searchValue = atom({
   key: 'characters/searchValue',
-  default: undefined,
+  default: '',
 });
 
 export const charactersState = atom({
@@ -27,8 +17,8 @@ export const charactersState = atom({
     key: '#characters/data',
     get: async ({ get }) => {
       try {
-        const currentPages = get(pages);
-        const response = await getMergedCharacterList(currentPages);
+        const searchParam = get(searchValue);
+        const response = await getMergedCharacterList(DEFAULT_PAGES, { searchParam });
         return {
           data: response?.results ?? [],
           total: response?.count ?? 0,

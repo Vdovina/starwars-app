@@ -3,6 +3,8 @@ import React, { useRef } from 'react';
 import { useTable, Column } from 'react-table';
 import { getId } from '../../utils/getId';
 import './styles.scss';
+import { LoadingStatus } from '../../constants/statuses';
+import { DotLoading } from '../../icons/dot-loading';
 
 export type TColumn<T> = Omit<Column, 'accessor'> & {
   accessor: keyof T;
@@ -17,17 +19,8 @@ interface ITableProps<T> {
   rows: any[];
   columns: TColumn<T>[];
   total: number;
-  page?: number;
-  setPage?(page: number): void;
   size?: number;
-  setSize?(size: number): void;
-  loading?: boolean;
-
-  searchValue: any;
-  setSearchValue(value: any): void;
-  searchField: string;
-  searchApi: string;
-
+  loading?: LoadingStatus;
   onRowClick?(id: string): void;
   onLoad?(pages: number[]): void;
 }
@@ -39,11 +32,8 @@ export const Grid = <T extends object>({
   rows: data,
   columns,
   total,
-  page = 0,
   size = 10,
   loading,
-  setPage,
-  setSize,
   onRowClick,
   onLoad,
 }: ITableProps<T>) => {
@@ -62,11 +52,11 @@ export const Grid = <T extends object>({
     const firstPage = Math.floor(firstIndex / size);
     const index = firstPage;
     const pageRange = Array.from({ length: Math.floor(lastIndex / size) - firstPage + 1 }, (_, i) => index + i);
-    const currentPages = Array.from({ length: Math.floor(rows.length / size) - firstPage }, (_, i) => index + i);
-    const exceptedPages = pageRange.filter((page) => !currentPages.includes(page));
-    console.log(firstIndex, lastIndex, size, rows.length, total, pageRange, currentPages, exceptedPages);
-    if (onLoad && exceptedPages.length) {
-      onLoad(exceptedPages);
+    const currentPages = Array.from({ length: Math.ceil(rows.length / size) - firstPage }, (_, i) => index + i);
+    const expectedPages = pageRange.filter((page) => !currentPages.includes(page));
+    if (onLoad && expectedPages.length) {
+      console.log(firstIndex, lastIndex, size, rows.length, total, pageRange, currentPages, expectedPages);
+      onLoad(expectedPages);
     }
   };
 
@@ -89,10 +79,10 @@ export const Grid = <T extends object>({
           </tr>
         </thead>
         <tbody ref={bodyRef} {...getTableBodyProps()} onScroll={onScroll}>
-          {rows.length === 0 && (
-            <div className="msg-placeholder">
-              <div className="msg-error">Information not found</div>
-            </div>
+          {loading !== LoadingStatus.Loading && rows.length === 0 && (
+            <tr className="msg-placeholder">
+              <td className="msg-error">Information not found</td>
+            </tr>
           )}
           {rows.map((row) => {
             prepareRow(row);
@@ -109,11 +99,11 @@ export const Grid = <T extends object>({
                 {row.cells.map((cell) => {
                   return (
                     <td
+                      key={cell.id}
                       {...cell.getCellProps({
                         className: cell.column.className,
                         style: cell.column.style,
                       })}
-                      key={cell.id}
                     >
                       {cell.render('Cell')}
                     </td>
@@ -122,6 +112,11 @@ export const Grid = <T extends object>({
               </tr>
             );
           })}
+          {loading === LoadingStatus.Loading && (
+            <tr className="loader-placeholder">
+              <td><DotLoading /></td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

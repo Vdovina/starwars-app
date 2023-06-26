@@ -20,12 +20,6 @@ export const Species = () => {
           rows={species ?? []}
           columns={columns}
           total={total}
-          page={currentPage}
-          setPage={setCurrentPage}
-          searchValue={currentSearchValue}
-          searchField="name"
-          searchApi={API_ROUTES.GET_CHARACTERS}
-          setSearchValue={setCurrentSearchValue}
           onRowClick={(id) => navigate(ROUTES.SPECIES_CARD.replace(':id', id))}
         />
       </div>

@@ -1,3 +1,64 @@
-.input-wrapper {
-  margin: var(--offset-size-xs) 0 var(--offset-size-lg) !important;
+.input {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-md);
+    line-height: var(--font-size-xl);
+  }
+
+  &__label {
+    margin-bottom: var(--offset-size-x2s);
+    font-weight: 500;
+  }
+
+  &__container {
+    display: flex;
+    position: relative;
+  }
+
+  &__component {
+    width: 100%;
+    padding: var(--offset-size-xs) var(--offset-size-sm);
+    font-size: var(--font-size-md);
+    line-height: var(--font-size-xl);
+    border: none;
+    border-radius: var(--border-radius);
+    &:focus-visible {
+      outline: none;
+    }
+  }
+  &__with-icon {
+    padding-left: calc(var(--offset-size-sm) + var(--offset-size-x2l));
+  }
+
+  &__actions {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--offset-size-x2s);
+    position: absolute;
+    right: 12px;
+    svg {
+      width: 10px;
+      height: 10px;
+      opacity: 0.5;
+      &:hover {
+        opacity: 0.8;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__first-icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 12px;
+    svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+    }
+  }
 }

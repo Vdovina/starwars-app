@@ -20,14 +20,7 @@ export const Starships = () => {
           rows={starships ?? []}
           columns={columns}
           total={total}
-          page={currentPage}
-          setPage={setCurrentPage}
           size={10}
-          setSize={() => {}}
-          searchValue={currentSearchValue}
-          searchField="name"
-          searchApi={API_ROUTES.GET_CHARACTERS}
-          setSearchValue={setCurrentSearchValue}
           onRowClick={(id) => navigate(ROUTES.STARSHIP_CARD.replace(':id', id))}
         />
       </div>
