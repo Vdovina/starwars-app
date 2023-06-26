@@ -28,48 +28,51 @@ export const SpeciesCard = () => {
         <GridWrapper>
           <Block>
             <div className="field">
-              <div className="field-name">Classification:</div>
-              <div className="field-value">{data.classification}</div>
+              <div className="field__name">Classification:</div>
+              <div className="field__value">{data.classification}</div>
             </div>
             <div className="field">
-              <div className="field-name">Designation:</div>
-              <div className="field-value">{data.designation}</div>
+              <div className="field__name">Designation:</div>
+              <div className="field__value">{data.designation}</div>
             </div>
             <div className="field">
-              <div className="field-name">Average height:</div>
-              <div className="field-value">{data.average_height}</div>
+              <div className="field__name">Average height:</div>
+              <div className="field__value">{data.average_height}</div>
             </div>
             <div className="field">
-              <div className="field-name">Skin colors:</div>
-              <div className="field-value">{data.skin_colors}</div>
+              <div className="field__name">Skin colors:</div>
+              <div className="field__value">{data.skin_colors}</div>
             </div>
             <div className="field">
-              <div className="field-name">Hair colors:</div>
-              <div className="field-value">{data.hair_colors}</div>
+              <div className="field__name">Hair colors:</div>
+              <div className="field__value">{data.hair_colors}</div>
             </div>
             <div className="field">
-              <div className="field-name">Eye colors:</div>
-              <div className="field-value">{data.eye_colors}</div>
+              <div className="field__name">Eye colors:</div>
+              <div className="field__value">{data.eye_colors}</div>
             </div>
             <div className="field">
-              <div className="field-name">Average lifespan:</div>
-              <div className="field-value">{data.average_lifespan}</div>
+              <div className="field__name">Average lifespan:</div>
+              <div className="field__value">{data.average_lifespan}</div>
             </div>
             <div className="field">
-              <div className="field-name">Homeworld:</div>
-              <div className="field-value">{data.homeworld}</div>
+              <div className="field__name">Homeworld:</div>
+              <div className="field__value">{data.homeworld}</div>
             </div>
             <div className="field">
-              <div className="field-name">Language:</div>
-              <div className="field-value">{data.language}</div>
+              <div className="field__name">Language:</div>
+              <div className="field__value">{data.language}</div>
             </div>
           </Block>
           {!!data.people?.length && (
-            <Block>
-              <div className="block-title">People</div>
+            <Block title='People'>
               <div className="list">
                 {data.people.map((item) => (
-                  <div key={item} onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}>
+                  <div
+                    key={item}
+                    className="field__link"
+                    onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
+                  >
                     {item}
                   </div>
                 ))}
@@ -77,11 +80,14 @@ export const SpeciesCard = () => {
             </Block>
           )}
           {!!data.films?.length && (
-            <Block>
-              <div className="block-title">Films</div>
+            <Block title='Films'>
               <div className="list">
                 {data.films.map((item) => (
-                  <div key={item} onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}>
+                  <div
+                    key={item}
+                    className="field__link"
+                    onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}
+                  >
                     {item}
                   </div>
                 ))}

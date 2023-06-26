@@ -7,7 +7,6 @@ import { Grid, SearchInput, TableWrapper } from '../../components';
 import { getMergedCharacterList } from '../../service/characterService';
 import { useVirtualScrolling } from '../../use/useVirtualScrolling';
 import { PAGE_SIZE } from '../../constants/constants';
-import { LoadingStatus } from '../../constants/statuses';
 import './styles.scss';
 
 export const Characters = () => {
@@ -20,8 +19,6 @@ export const Characters = () => {
     currentSearchValue,
     5000
   );
-
-  console.log(data, loading);
 
   return (
     <>

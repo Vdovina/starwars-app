@@ -7,7 +7,7 @@
 
 .film-info__title {
   grid-column: 1 / -2;
-  font-size: 1.5rem;
+  font-size: var(--offset-size-x2l);
   font-weight: bold;
 }
 
@@ -24,12 +24,12 @@
 .film-info__button {
   height: 100%;
   grid-column-start: 3;
-  grid-row: 2 / 6;
+  grid-row: 1 / 6;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e4e4e4;
-  color: #9e9e9e;
+  background-color: transparent;
+  color: var(--shady-gray);
   outline: none;
   border: none;
   cursor: pointer;

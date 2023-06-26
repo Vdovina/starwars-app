@@ -7,19 +7,26 @@
   & .field {
     display: flex;
     flex-wrap: wrap;
+    line-height: var(--font-size-x3l);
 
-    & .field-name,
-    .block-title {
+    &__name {
       margin-right: var(--offset-size-xs);
       font-weight: bold;
     }
+    &__link {
+      &:hover {
+        color: var(--dark-yellow);
+        cursor: pointer;
+      }
+    }
   }
+
   & .list {
     max-height: calc(100% - 4px);
     margin: var(--offset-size-xs) 0;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
+    line-height: var(--font-size-x3l);
     overflow-y: auto;
   }
 }

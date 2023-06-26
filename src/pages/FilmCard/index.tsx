@@ -29,53 +29,71 @@ export const FilmCard = () => {
         <GridWrapper>
           <Block>
             <div className="field">
-              <div className="field-name">Episode:</div>
-              <div className="field-value">{data.episode_id}</div>
+              <div className="field__name">Episode:</div>
+              <div className="field__value">{data.episode_id}</div>
             </div>
             <div className="field">
-              <div className="field-name">Director:</div>
-              <div className="field-value">{data.director}</div>
+              <div className="field__name">Director:</div>
+              <div className="field__value">{data.director}</div>
             </div>
             <div className="field">
-              <div className="field-name">Producers:</div>
-              <div className="field-value">{data.producer}</div>
+              <div className="field__name">Producers:</div>
+              <div className="field__value">{data.producer}</div>
             </div>
             <div className="field">
-              <div className="field-name">Release date:</div>
-              <div className="field-value">{data.release_date}</div>
+              <div className="field__name">Release date:</div>
+              <div className="field__value">{data.release_date}</div>
             </div>
           </Block>
-          <Block>
-            <div className="block-title">Characters</div>
+          <Block title="Characters">
             <div className="list">
               {data.characters.map((item) => (
-                <div key={item} onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}>
+                <div
+                  key={item}
+                  className="field__link"
+                  onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
+                >
                   {item}
                 </div>
               ))}
             </div>
           </Block>
-          <Block>
-            <div className="block-title">Starships</div>
+          <Block title="Starships">
             <div className="list">
               {data.starships.map((item) => (
-                <div key={item}>{item}</div>
+                <div
+                  key={item}
+                  className="field__link"
+                  onClick={() => navigate(ROUTES.STARSHIP_CARD.replace(':id', getId(item)))}
+                >
+                  {item}
+                </div>
               ))}
             </div>
           </Block>
-          <Block>
-            <div className="block-title">Planets</div>
+          <Block title="Planets">
             <div className="list">
               {data.planets.map((item) => (
-                <div key={item}>{item}</div>
+                <div
+                  key={item}
+                  className="field__link"
+                  onClick={() => navigate(ROUTES.PLANET_CARD.replace(':id', getId(item)))}
+                >
+                  {item}
+                </div>
               ))}
             </div>
           </Block>
-          <Block>
-            <div className="block-title">Species</div>
+          <Block title="Species">
             <div className="list">
               {data.species.map((item) => (
-                <div key={item}>{item}</div>
+                <div
+                  key={item}
+                  className="field__link"
+                  onClick={() => navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))}
+                >
+                  {item}
+                </div>
               ))}
             </div>
           </Block>

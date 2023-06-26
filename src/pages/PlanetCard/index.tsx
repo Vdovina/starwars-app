@@ -28,44 +28,47 @@ export const PlanetCard = () => {
         <GridWrapper>
           <Block>
             <div className="field">
-              <div className="field-name">Rotation period:</div>
-              <div className="field-value">{data.rotation_period}</div>
+              <div className="field__name">Rotation period:</div>
+              <div className="field__value">{data.rotation_period}</div>
             </div>
             <div className="field">
-              <div className="field-name">Orbital period:</div>
-              <div className="field-value">{data.orbital_period}</div>
+              <div className="field__name">Orbital period:</div>
+              <div className="field__value">{data.orbital_period}</div>
             </div>
             <div className="field">
-              <div className="field-name">Diameter:</div>
-              <div className="field-value">{data.diameter}</div>
+              <div className="field__name">Diameter:</div>
+              <div className="field__value">{data.diameter}</div>
             </div>
             <div className="field">
-              <div className="field-name">Climate:</div>
-              <div className="field-value">{data.climate}</div>
+              <div className="field__name">Climate:</div>
+              <div className="field__value">{data.climate}</div>
             </div>
             <div className="field">
-              <div className="field-name">Gravity:</div>
-              <div className="field-value">{data.gravity}</div>
+              <div className="field__name">Gravity:</div>
+              <div className="field__value">{data.gravity}</div>
             </div>
             <div className="field">
-              <div className="field-name">Terrain:</div>
-              <div className="field-value">{data.terrain}</div>
+              <div className="field__name">Terrain:</div>
+              <div className="field__value">{data.terrain}</div>
             </div>
             <div className="field">
-              <div className="field-name">Surface water:</div>
-              <div className="field-value">{data.surface_water}</div>
+              <div className="field__name">Surface water:</div>
+              <div className="field__value">{data.surface_water}</div>
             </div>
             <div className="field">
-              <div className="field-name">Population:</div>
-              <div className="field-value">{data.population}</div>
+              <div className="field__name">Population:</div>
+              <div className="field__value">{data.population}</div>
             </div>
           </Block>
           {!!data.residents?.length && (
-            <Block>
-              <div className="block-title">Residents</div>
+            <Block title="Residents">
               <div className="list">
                 {data.residents.map((item) => (
-                  <div key={item} onClick={() => navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))}>
+                  <div
+                    key={item}
+                    className="field__link"
+                    onClick={() => navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))}
+                  >
                     {item}
                   </div>
                 ))}
@@ -73,11 +76,14 @@ export const PlanetCard = () => {
             </Block>
           )}
           {!!data.films?.length && (
-            <Block>
-              <div className="block-title">Films</div>
+            <Block title="Films">
               <div className="list">
                 {data.films.map((item) => (
-                  <div key={item} onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}>
+                  <div
+                    key={item}
+                    className="field__link"
+                    onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}
+                  >
                     {item}
                   </div>
                 ))}

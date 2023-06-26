@@ -7,6 +7,7 @@ import { ROUTES } from '../../constants/routes';
 import { getId } from '../../utils/getId';
 import { characterCardState } from './atoms';
 import './styles.scss';
+import classNames from 'classnames';
 
 type UrlParams = {
   id: string;
@@ -24,48 +25,56 @@ export const CharacterCard = () => {
   return (
     <>
       <header>{data.name}</header>
-      <div className='character-card'>
+      <div className="character-card">
         <GridWrapper>
           <Block>
             <div className="field">
-              <div className="field-name">Birth Year:</div>
-              <div className="field-value">{data.birth_year}</div>
+              <div className="field__name">Birth Year:</div>
+              <div className="field__value">{data.birth_year}</div>
             </div>
             <div className="field">
-              <div className="field-name">Gender:</div>
-              <div className="field-value">{data.gender}</div>
+              <div className="field__name">Gender:</div>
+              <div className="field__value">{data.gender}</div>
             </div>
             <div className="field">
-              <div className="field-name">Mass:</div>
-              <div className="field-value">{data.mass}</div>
+              <div className="field__name">Mass:</div>
+              <div className="field__value">{data.mass}</div>
             </div>
             <div className="field">
-              <div className="field-name">Height:</div>
-              <div className="field-value">{data.height}</div>
+              <div className="field__name">Height:</div>
+              <div className="field__value">{data.height}</div>
             </div>
             <div className="field">
-              <div className="field-name">Hair color:</div>
-              <div className="field-value">{data.hair_color}</div>
+              <div className="field__name">Hair color:</div>
+              <div className="field__value">{data.hair_color}</div>
             </div>
             <div className="field">
-              <div className="field-name">Skin color:</div>
-              <div className="field-value">{data.skin_color}</div>
+              <div className="field__name">Skin color:</div>
+              <div className="field__value">{data.skin_color}</div>
             </div>
             <div className="field">
-              <div className="field-name">Eye color:</div>
-              <div className="field-value">{data.eye_color}</div>
+              <div className="field__name">Eye color:</div>
+              <div className="field__value">{data.eye_color}</div>
             </div>
             <div className="field">
-              <div className="field-name">Homeworld:</div>
-              <div className="field-value">{data.homeworld}</div>
+              <div className="field__name">Homeworld:</div>
+              <div
+                className={classNames('field__value', 'field__link')}
+                onClick={() => navigate(ROUTES.PLANET_CARD.replace(':id', getId(data.homeworld)))}
+              >
+                {data.homeworld}
+              </div>
             </div>
           </Block>
           {!!data.films?.length && (
-            <Block>
-              <div className="block-title">Films</div>
+            <Block title="Films">
               <div className="list">
                 {data.films.map((item) => (
-                  <div key={item} onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}>
+                  <div
+                    key={item}
+                    className="field__link"
+                    onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}
+                  >
                     {item}
                   </div>
                 ))}
@@ -73,13 +82,13 @@ export const CharacterCard = () => {
             </Block>
           )}
           {!!data.species?.length && (
-            <Block>
-              <div className="block-title">Species</div>
+            <Block title="Species">
               <div className="list">
                 {data.species.map((item) => (
                   <div
                     key={item}
-                    // onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
+                    className="field__link"
+                    onClick={() => navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))}
                   >
                     {item}
                   </div>
@@ -88,12 +97,12 @@ export const CharacterCard = () => {
             </Block>
           )}
           {!!data.vehicles?.length && (
-            <Block>
-              <div className="block-title">Vehicle</div>
+            <Block title="Vehicle">
               <div className="list">
                 {data.vehicles.map((item) => (
                   <div
                     key={item}
+                    className="field__link"
                     // onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
                   >
                     {item}
@@ -103,13 +112,13 @@ export const CharacterCard = () => {
             </Block>
           )}
           {!!data.starships?.length && (
-            <Block>
-              <div className="block-title">Starships</div>
+            <Block title="Starships">
               <div className="list">
                 {data.starships.map((item) => (
                   <div
                     key={item}
-                    // onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
+                    className="field__link"
+                    onClick={() => navigate(ROUTES.STARSHIP_CARD.replace(':id', getId(item)))}
                   >
                     {item}
                   </div>

@@ -1,5 +1,14 @@
 .block {
+  display: flex;
+  flex-direction: column;
   padding: var(--offset-size-xl);
   background-color: #fff;
   border-radius: var(--offset-size-xs);
+  overflow: hidden;
+
+  &__title {
+    margin-bottom: var(--offset-size-sm);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+  }
 }
