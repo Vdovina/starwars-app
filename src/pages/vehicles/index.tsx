@@ -1,32 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { searchValue, charactersState } from './atoms';
+import { searchValue, vehiclesState } from './atoms';
 import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
-import { Table, SearchInput, TableWrapper } from '../../components';
-import { getMergedCharacterList } from '../../service/character-service';
 import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
+import { Table, SearchInput, TableWrapper } from '../../components';
 import { PAGE_SIZE } from '../../constants/constants';
-import './styles.scss';
+import { getMergedVehicleList } from '../../service/vehicle-service';
 
-export const Characters = () => {
+export const Vehicles = () => {
   const navigate = useNavigate();
   const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
 
-  const { data, loading, onScroll } = useVirtualScrolling(
-    charactersState,
-    getMergedCharacterList,
-    currentSearchValue,
-    5000
-  );
+  const { data, loading, onScroll } = useVirtualScrolling(vehiclesState, getMergedVehicleList, currentSearchValue, 5000);
 
   return (
     <>
-      <header>CHARACTERS</header>
+      <header>VEHICLES</header>
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput placeholder='Search characters' value={currentSearchValue} onChange={setCurrentSearchValue} />
+          <SearchInput placeholder="Search vehicles" value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
         <Table
           rows={data?.data ?? []}
@@ -35,7 +29,7 @@ export const Characters = () => {
           loading={loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
-          onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
+          onRowClick={(id) => navigate(ROUTES.VEHICLE_CARD.replace(':id', id))}
         />
       </TableWrapper>
     </>

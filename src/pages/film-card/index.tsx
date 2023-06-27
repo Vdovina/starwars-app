@@ -15,7 +15,7 @@ type UrlParams = {
 export const FilmCard = () => {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
-  const data = useRecoilValue(filmCardState(id ?? ''));
+  const data = useRecoilValue(filmCardState(id));
 
   if (!data) {
     return <div>No information</div>;

@@ -15,7 +15,7 @@ type UrlParams = {
 export const SpeciesCard = () => {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
-  const data = useRecoilValue(speciesCardState(id ?? ''));
+  const data = useRecoilValue(speciesCardState(id));
 
   if (!data) {
     return <div>No information</div>;
@@ -24,7 +24,7 @@ export const SpeciesCard = () => {
   return (
     <>
       <header>{data.name}</header>
-      <div className="character-card">
+      <div className="species-card">
         <GridWrapper>
           <Block>
             <div className="field">

@@ -15,6 +15,8 @@ import { StarshipCard } from './pages/starship-card';
 import { Starships } from './pages/starships';
 import { Loader } from './components/loader';
 import './styles/styles.scss';
+import { Vehicles } from './pages/vehicles';
+import { VehicleCard } from './pages/vehicle-card';
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
               <Route path={ROUTES.PLANET_CARD} element={<PlanetCard />} />
               <Route path={ROUTES.SPECIES} element={<Species />} />
               <Route path={ROUTES.SPECIES_CARD} element={<SpeciesCard />} />
+              <Route path={ROUTES.VEHICLES} element={<Vehicles />} />
+              <Route path={ROUTES.VEHICLE_CARD} element={<VehicleCard />} />
               <Route path="/*" element={<Navigate to="/films" />} />
             </Routes>
           </Suspense>

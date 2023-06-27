@@ -1,15 +1,20 @@
-import { selector } from 'recoil';
+import { atom, selector } from 'recoil';
 import { API_ROUTES } from '../../constants/routes';
 import { Film } from '../../types/film';
+import { getFilmList } from '../../service/film-service';
 
-export const filmsState = selector({
-  key: 'films',
-  get: async () => {
-    try {
-      const response = await (await fetch(API_ROUTES.GET_FILMS)).json();
-      return (response?.results ?? []) as Film[];
-    } catch (error) {
-      throw error;
-    }
-  },
+export const filmsState = atom({
+  key: 'films/data',
+  default: selector({
+    key: '#films/data',
+    get: async () => {
+      try {
+        const response = await getFilmList(0);
+        debugger;
+        return response?.results ?? [];
+      } catch (error) {
+        throw error;
+      }
+    },
+  }),
 });

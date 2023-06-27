@@ -21,7 +21,7 @@ export const Starships = () => {
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
+          <SearchInput placeholder='Search starships' value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
         <Table
           rows={data?.data ?? []}

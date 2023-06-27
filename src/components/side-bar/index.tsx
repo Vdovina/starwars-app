@@ -24,6 +24,10 @@ const MENU_OPTIONS = [
     link: ROUTES.SPECIES,
     label: 'Species',
   },
+  {
+    link: ROUTES.VEHICLES,
+    label: 'Vehicles',
+  },
 ];
 
 export const SideBar = () => {

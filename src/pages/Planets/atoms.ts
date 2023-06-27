@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import type { Planet } from '../../types/planet';
 import { CollectionState } from '../../types/collection-state';
 import { DEFAULT_PAGES } from '../../constants/constants';
-import { getMergedPlanetsList } from '../../service/planets-service';
+import { getMergedPlanetList } from '../../service/planet-service';
 
 export type CharacterListState = CollectionState<Planet>;
 
@@ -18,7 +18,7 @@ export const planetsState = atom({
     get: async ({ get }) => {
       try {
         const searchParam = get(searchValue);
-        const response = await getMergedPlanetsList(DEFAULT_PAGES, { searchParam });
+        const response = await getMergedPlanetList(DEFAULT_PAGES, { searchParam });
         return {
           data: response?.results ?? [],
           total: response?.count ?? 0,

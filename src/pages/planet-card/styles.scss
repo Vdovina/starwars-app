@@ -1,0 +1,42 @@
+.planet-card {
+  width: 100%;
+  margin: var(--offset-size-xl) 0;
+
+  & .field {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: var(--font-size-x3l);
+
+    &__name {
+      margin-right: var(--offset-size-xs);
+      font-weight: bold;
+    }
+    &__link {
+      &:hover {
+        color: var(--dark-yellow);
+        cursor: pointer;
+      }
+    }
+  }
+
+  & .list {
+    max-height: calc(100% - 4px);
+    margin: var(--offset-size-xs) 0;
+    display: flex;
+    flex-direction: column;
+    line-height: var(--font-size-x3l);
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .item-card__blocks {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .item-card__blocks {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

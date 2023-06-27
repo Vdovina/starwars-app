@@ -3,7 +3,13 @@ import { SearchIcon } from '../../icons/search-icon';
 import { Input } from '../input';
 import { useDebounce } from '../../use/use-debounce';
 
-export const SearchInput = ({ value, onChange }) => {
+interface SearchInputProps {
+  placeholder?: string;
+  value: string;
+  onChange(value: string): void;
+}
+
+export const SearchInput = ({ placeholder, value, onChange }: SearchInputProps) => {
   const [currentValue, setCurrentValue] = useState('');
   const debounsedValue = useDebounce(currentValue);
 
@@ -15,7 +21,5 @@ export const SearchInput = ({ value, onChange }) => {
     onChange(debounsedValue);
   }, [debounsedValue, onChange]);
 
-  return (
-    <Input firstIcon={<SearchIcon />} placeholder="Search characters" value={currentValue} onChange={setCurrentValue} />
-  );
+  return <Input firstIcon={<SearchIcon />} placeholder={placeholder} value={currentValue} onChange={setCurrentValue} />;
 };

@@ -19,20 +19,20 @@ export const FilmInfo = ({
     <Block className="film-info">
       <div className="film-info__title">{title}</div>
       <div className="film-info__info">
-        <div className="field-name">Episode:</div>
-        <div className="field-value">{episode_id}</div>
+        <div className="field__name">Episode:</div>
+        <div className="field__value">{episode_id}</div>
       </div>
       <div className="film-info__info">
-        <div className="field-name">Director:</div>
-        <div className="field-value">{director}</div>
+        <div className="field__name">Director:</div>
+        <div className="field__value">{director}</div>
       </div>
       <div className="film-info__info">
-        <div className="field-name">Producers:</div>
-        <div className="field-value">{producer}</div>
+        <div className="field__name">Producers:</div>
+        <div className="field__value">{producer}</div>
       </div>
       <div className="film-info__info">
-        <div className="field-name">Release date:</div>
-        <div className="field-value">{release_date}</div>
+        <div className="field__name">Release date:</div>
+        <div className="field__value">{release_date}</div>
       </div>
       <div className="film-info__summary">{opening_crawl}</div>
       <Link className="film-info__button" to={ROUTES.FILM_CARD.replace(':id', id)}>

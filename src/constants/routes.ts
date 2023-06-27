@@ -12,6 +12,8 @@ export const ROUTES = {
   PLANET_CARD: '/planets/:id',
   SPECIES: '/species',
   SPECIES_CARD: '/species/:id',
+  VEHICLES: '/vehicles',
+  VEHICLE_CARD: '/vehicles/:id'
 };
 
 export const API_ROUTES = {
@@ -25,4 +27,6 @@ export const API_ROUTES = {
   GET_PLANET_INFO: `${SERVER}/planets/:id`,
   GET_SPECIES: `${SERVER}/species`,
   GET_SPECIES_INFO: `${SERVER}/species/:id`,
+  GET_VEHICLES: `${SERVER}/vehicles`,
+  GET_VEHICLE_INFO: `${SERVER}/vehicles/:id`,
 };

@@ -1,19 +1,21 @@
-import { selectorFamily } from 'recoil';
-import { API_ROUTES } from '../../constants/routes';
-import { Starship } from '../../types/starship';
+import { atomFamily, selectorFamily } from 'recoil';
+import type { Starship } from '../../types/starship';
+import { getStarship } from '../../service/starship-service';
 
-export const starshipCardState = selectorFamily({
-  key: 'starshipCard',
-  get: (starshipId: string) => async () => {
-    try {
-      if (starshipId === '') {
-        return undefined;
+export const starshipCardState = atomFamily<Starship | undefined, string | undefined>({
+  key: 'starship_card',
+  default: selectorFamily({
+    key: '#starship_card',
+    get: (starshipId: string | undefined) => async () => {
+      try {
+        if (!starshipId) {
+          return undefined;
+        }
+        const response = await getStarship(starshipId);
+        return response;
+      } catch (error) {
+        throw error;
       }
-
-      const response = await (await fetch(API_ROUTES.GET_STARSHIP_INFO.replace(':id', starshipId))).json();
-      return response as Starship;
-    } catch (error) {
-      throw error;
-    }
-  },
+    },
+  }),
 });

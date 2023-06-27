@@ -15,7 +15,7 @@ type UrlParams = {
 export const StarshipCard = () => {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
-  const data = useRecoilValue(starshipCardState(id ?? ''));
+  const data = useRecoilValue(starshipCardState(id));
 
   if (!data) {
     return <div>No information</div>;
@@ -24,7 +24,7 @@ export const StarshipCard = () => {
   return (
     <>
       <header>{data.name}</header>
-      <div className="character-card">
+      <div className="starshipr-card">
         <GridWrapper>
           <Block>
             <div className="field">

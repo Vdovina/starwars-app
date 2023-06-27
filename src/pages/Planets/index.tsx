@@ -4,7 +4,7 @@ import { planetsState, searchValue } from './atoms';
 import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
 import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
-import { getMergedPlanetsList } from '../../service/planets-service';
+import { getMergedPlanetList } from '../../service/planet-service';
 import { Table, SearchInput, TableWrapper } from '../../components';
 import { PAGE_SIZE } from '../../constants/constants';
 import './styles.scss';
@@ -13,7 +13,7 @@ export const Planets = () => {
   const navigate = useNavigate();
   const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
 
-  const { data, loading, onScroll } = useVirtualScrolling(planetsState, getMergedPlanetsList, currentSearchValue, 5000);
+  const { data, loading, onScroll } = useVirtualScrolling(planetsState, getMergedPlanetList, currentSearchValue, 5000);
 
   return (
     <>
@@ -21,7 +21,7 @@ export const Planets = () => {
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
+          <SearchInput placeholder='Search planets' value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
         <Table
           rows={data?.data ?? []}

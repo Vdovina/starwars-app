@@ -1,19 +1,21 @@
-import { selectorFamily } from 'recoil';
-import { API_ROUTES } from '../../constants/routes';
+import { atomFamily, selectorFamily } from 'recoil';
 import { Species } from '../../types/species';
+import { getSpecies } from '../../service/species-service';
 
-export const speciesCardState = selectorFamily({
-  key: 'speciesCard',
-  get: (speciesId: string) => async () => {
-    try {
-      if (speciesId === '') {
-        return undefined;
+export const speciesCardState = atomFamily<Species | undefined, string | undefined>({
+  key: 'species_card',
+  default: selectorFamily({
+    key: '#species_card',
+    get: (speciesId: string | undefined) => async () => {
+      try {
+        if (!speciesId) {
+          return undefined;
+        }
+        const response = await getSpecies(speciesId);
+        return response;
+      } catch (error) {
+        throw error;
       }
-
-      const response = await (await fetch(API_ROUTES.GET_SPECIES_INFO.replace(':id', speciesId))).json();
-      return response as Species;
-    } catch (error) {
-      throw error;
-    }
-  },
+    },
+  }),
 });

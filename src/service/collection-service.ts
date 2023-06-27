@@ -54,5 +54,5 @@ export async function getMergedList<T>(
 }
 
 export async function getInfo(url: string, id: string | number): Promise<any> {
-  return axios.get(url, { params: { id } }).then((response) => response.data);
+  return axios.get(url.replace(':id', `${id}`)).then((response) => response.data);
 }

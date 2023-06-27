@@ -1,9 +1,8 @@
-import axios from 'axios';
 import { API_ROUTES } from '../constants/routes';
 import type { CollectionResponse, MultipleCollectionResponse } from '../types/collection-response';
 import type { AdditionalQueryParams } from '../types/query-params';
 import type { Starship } from '../types/starship';
-import { getList, getMergedList } from './collection-service';
+import { getInfo, getList, getMergedList } from './collection-service';
 
 export async function getStarshipList(
   page: number,
@@ -19,6 +18,6 @@ export async function getMergedStarshipList(
   return getMergedList(API_ROUTES.GET_STARSHIPS, pages, queryParams);
 }
 
-export async function getStarship(id): Promise<Starship> {
-  return axios.get(API_ROUTES.GET_STARSHIP_INFO, { params: { id } }).then((response) => response.data);
+export async function getStarship(id: string): Promise<Starship> {
+  return getInfo(API_ROUTES.GET_STARSHIP_INFO, id);
 }

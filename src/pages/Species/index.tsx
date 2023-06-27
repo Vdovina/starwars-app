@@ -21,7 +21,7 @@ export const Species = () => {
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput value={currentSearchValue} onChange={setCurrentSearchValue} />
+          <SearchInput placeholder='Search species' value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
         <Table
           rows={data?.data ?? []}
@@ -30,7 +30,7 @@ export const Species = () => {
           loading={loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
-          onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
+          onRowClick={(id) => navigate(ROUTES.SPECIES_CARD.replace(':id', id))}
         />
       </TableWrapper>
     </>
