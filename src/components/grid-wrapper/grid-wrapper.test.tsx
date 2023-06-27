@@ -2,7 +2,7 @@ import { create, act as testAct, ReactTestRenderer } from 'react-test-renderer';
 import { GridWrapper } from './';
 
 describe('GridWrapper Tests', () => {
-  it('GridWrapper render', () => {
+  it('render', () => {
     let component: ReactTestRenderer;
     testAct(() => {
       component = create(

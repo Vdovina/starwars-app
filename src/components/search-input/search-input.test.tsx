@@ -1,11 +1,11 @@
 import { create, act as testAct, ReactTestRenderer } from 'react-test-renderer';
-import { Block } from './';
+import { SearchInput } from './';
 
-describe('Block Tests', () => {
+describe('SearchInput Tests', () => {
   it('render', () => {
     let component: ReactTestRenderer;
     testAct(() => {
-      component = create(<Block title="BlockTitle">ChildrenNode</Block>);
+      component = create(<SearchInput value="" onChange={() => {}} />);
     });
     expect(component.toJSON()).toMatchSnapshot();
   });

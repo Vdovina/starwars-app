@@ -19,8 +19,17 @@ const film: Film = {
   url: 'some-url/1/',
 };
 
+jest.mock('react-router-dom', () => ({
+  __esModule: true,
+  Link: ({ children, className }) => (
+    <div test-id="Link" className={className}>
+      {children}
+    </div>
+  ),
+}));
+
 describe('FilmInfo Tests', () => {
-  it('FilmInfo render', () => {
+  it('render', () => {
     let component: ReactTestRenderer;
     testAct(() => {
       component = create(<FilmInfo film={film} />);

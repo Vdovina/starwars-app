@@ -4,7 +4,7 @@ export const useDebounce = (value: string, delay: number = 500) => {
   const [debounceValue, setDebounceValue] = useState<string>(value);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebounceValue(value), delay ?? 500);
+    const timer = setTimeout(() => setDebounceValue(value), delay);
     return () => clearTimeout(timer);
   }, [delay, value]);
 

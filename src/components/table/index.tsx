@@ -1,10 +1,10 @@
+import { useRef } from 'react';
 import classNames from 'classnames';
-import React, { useRef } from 'react';
 import { useTable, Column } from 'react-table';
 import { getId } from '../../utils/get-id';
-import './styles.scss';
 import { LoadingStatus } from '../../constants/statuses';
 import { DotLoading } from '../../icons/dot-loading';
+import './styles.scss';
 
 export type TColumn<T> = Omit<Column, 'accessor'> & {
   accessor: keyof T;
@@ -16,7 +16,7 @@ export type TRow<T> = T & {
 };
 
 interface ITableProps<T> {
-  rows: any[];
+  rows: TRow<T>[];
   columns: TColumn<T>[];
   total: number;
   size?: number;
@@ -55,7 +55,6 @@ export const Table = <T extends object>({
     const currentPages = Array.from({ length: Math.ceil(rows.length / size) - firstPage }, (_, i) => index + i);
     const expectedPages = pageRange.filter((page) => !currentPages.includes(page));
     if (onLoad && expectedPages.length) {
-      console.log(firstIndex, lastIndex, size, rows.length, total, pageRange, currentPages, expectedPages);
       onLoad(expectedPages);
     }
   };
@@ -64,8 +63,8 @@ export const Table = <T extends object>({
     <div className="table-container">
       <table {...getTableProps()}>
         <thead>
-          <tr {...headerGroups[0].getHeaderGroupProps()}>
-            {headerGroups[0].headers.map((column) => (
+          <tr {...headerGroups[0]?.getHeaderGroupProps()}>
+            {headerGroups[0]?.headers.map((column) => (
               <th
                 key={column.id}
                 {...column.getHeaderProps({
@@ -84,7 +83,12 @@ export const Table = <T extends object>({
               <td className="msg-error">Information not found</td>
             </tr>
           )}
-          {rows.map((row) => {
+          {loading === LoadingStatus.Error && (
+            <tr className="msg-placeholder">
+              <td className="msg-error">Something went wrong</td>
+            </tr>
+          )}
+          {loading !== LoadingStatus.Error && rows.map((row) => {
             prepareRow(row);
             return (
               <tr
@@ -114,7 +118,9 @@ export const Table = <T extends object>({
           })}
           {loading === LoadingStatus.Loading && (
             <tr className="loader-placeholder">
-              <td><DotLoading /></td>
+              <td>
+                <DotLoading />
+              </td>
             </tr>
           )}
         </tbody>

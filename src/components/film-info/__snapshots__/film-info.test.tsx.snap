@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmInfo Tests render 1`] = `
+<div
+  className="block film-info"
+>
+  <div
+    className="film-info__title"
+  >
+    Title
+  </div>
+  <div
+    className="film-info__info"
+  >
+    <div
+      className="field-name"
+    >
+      Episode:
+    </div>
+    <div
+      className="field-value"
+    >
+      1
+    </div>
+  </div>
+  <div
+    className="film-info__info"
+  >
+    <div
+      className="field-name"
+    >
+      Director:
+    </div>
+    <div
+      className="field-value"
+    >
+      DirectorName
+    </div>
+  </div>
+  <div
+    className="film-info__info"
+  >
+    <div
+      className="field-name"
+    >
+      Producers:
+    </div>
+    <div
+      className="field-value"
+    >
+      ProducerName
+    </div>
+  </div>
+  <div
+    className="film-info__info"
+  >
+    <div
+      className="field-name"
+    >
+      Release date:
+    </div>
+    <div
+      className="field-value"
+    >
+      2000-01-01
+    </div>
+  </div>
+  <div
+    className="film-info__summary"
+  >
+    Caption
+  </div>
+  <div
+    className="film-info__button"
+    test-id="Link"
+  >
+    <svg
+      fill="none"
+      height="25"
+      viewBox="0 0 9 25"
+      width="9"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 1L8 12.5L1 24"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  </div>
+</div>
+`;

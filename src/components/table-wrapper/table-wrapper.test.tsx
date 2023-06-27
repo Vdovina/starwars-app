@@ -3,7 +3,7 @@ import { TableWrapper } from './';
 
 
 describe('TableWrapper Tests', () => {
-  it('TableWrapper render', () => {
+  it('render', () => {
     let component: ReactTestRenderer;
     testAct(() => {
       component = create(<TableWrapper>ChildrenNode</TableWrapper>);
