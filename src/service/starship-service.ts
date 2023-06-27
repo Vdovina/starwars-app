@@ -8,14 +8,14 @@ export async function getStarshipList(
   page: number,
   queryParams?: AdditionalQueryParams
 ): Promise<CollectionResponse<Starship>> {
-  return getList(API_ROUTES.GET_STARSHIPS, page, queryParams);
+  return getList(API_ROUTES.GET_STARSHIPS, { ...queryParams, page });
 }
 
 export async function getMergedStarshipList(
   pages: number[],
   queryParams?: AdditionalQueryParams
 ): Promise<MultipleCollectionResponse<Starship>> {
-  return getMergedList(API_ROUTES.GET_STARSHIPS, pages, queryParams);
+  return getMergedList(API_ROUTES.GET_STARSHIPS, { ...queryParams, pages });
 }
 
 export async function getStarship(id: string): Promise<Starship> {

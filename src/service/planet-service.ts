@@ -5,14 +5,14 @@ import type { Planet } from '../types/planet';
 import { getInfo, getList, getMergedList } from './collection-service';
 
 export async function getPlanetList(page: number, queryParams?: AdditionalQueryParams): Promise<CollectionResponse<Planet>> {
-  return getList(API_ROUTES.GET_PLANETS, page, queryParams);
+  return getList(API_ROUTES.GET_PLANETS, { ...queryParams, page });
 }
 
 export async function getMergedPlanetList(
   pages: number[],
   queryParams?: AdditionalQueryParams
 ): Promise<MultipleCollectionResponse<Planet>> {
-  return getMergedList(API_ROUTES.GET_PLANETS, pages, queryParams);
+  return getMergedList(API_ROUTES.GET_PLANETS, { ...queryParams, pages });
 }
 
 export async function getPlanet(id: string): Promise<Planet> {

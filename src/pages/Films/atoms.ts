@@ -1,16 +1,14 @@
 import { atom, selector } from 'recoil';
-import { API_ROUTES } from '../../constants/routes';
-import { Film } from '../../types/film';
 import { getFilmList } from '../../service/film-service';
+import type { Film } from '../../types/film';
 
-export const filmsState = atom({
+export const filmsState = atom<Film[]>({
   key: 'films/data',
   default: selector({
     key: '#films/data',
     get: async () => {
       try {
-        const response = await getFilmList(0);
-        debugger;
+        const response = await getFilmList();
         return response?.results ?? [];
       } catch (error) {
         throw error;

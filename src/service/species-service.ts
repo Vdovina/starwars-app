@@ -8,14 +8,14 @@ export async function getSpeciesList(
   page: number,
   queryParams?: AdditionalQueryParams
 ): Promise<CollectionResponse<Species>> {
-  return getList(API_ROUTES.GET_SPECIES, page, queryParams);
+  return getList(API_ROUTES.GET_SPECIES, { ...queryParams, page });
 }
 
 export async function getMergedSpeciesList(
   pages: number[],
   queryParams?: AdditionalQueryParams
 ): Promise<MultipleCollectionResponse<Species>> {
-  return getMergedList(API_ROUTES.GET_SPECIES, pages, queryParams);
+  return getMergedList(API_ROUTES.GET_SPECIES, { ...queryParams, pages });
 }
 
 export async function getSpecies(id: string): Promise<Species> {

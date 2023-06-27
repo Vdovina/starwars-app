@@ -1,14 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
 import type { CollectionResponse, MultipleCollectionResponse } from '../types/collection-response';
-import type { AdditionalQueryParams } from '../types/query-params';
+import type { AdditionalQueryParams, MultipleListQueryParams, SingleListQueryParams } from '../types/query-params';
 
-export async function getList<T>(
-  url: string,
-  page: number,
-  queryParams?: AdditionalQueryParams
-): Promise<CollectionResponse<T>> {
+export async function getList<T>(url: string, queryParams?: SingleListQueryParams): Promise<CollectionResponse<T>> {
   const params = new URLSearchParams();
-  params.append('page', String(page + 1));
+  if (queryParams?.page) {
+    params.append('page', String(queryParams.page + 1));
+  }
   if (queryParams?.searchParam) {
     params.append('search', queryParams.searchParam);
   }
@@ -17,14 +15,13 @@ export async function getList<T>(
 
 export async function getMergedList<T>(
   url: string,
-  pages: number[],
-  queryParams?: AdditionalQueryParams
+  queryParams: MultipleListQueryParams,
 ): Promise<MultipleCollectionResponse<T>> {
   const params = new URLSearchParams();
   if (queryParams?.searchParam) {
     params.append('search', queryParams.searchParam);
   }
-  const urls = pages.map((page) => {
+  const urls = queryParams.pages.map((page) => {
     params.set('page', String(page + 1));
     return `${url}?${params}`;
   });

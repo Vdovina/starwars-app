@@ -8,14 +8,14 @@ export async function getVehicleList(
   page: number,
   queryParams?: AdditionalQueryParams
 ): Promise<CollectionResponse<Vehicle>> {
-  return getList(API_ROUTES.GET_VEHICLES, page, queryParams);
+  return getList(API_ROUTES.GET_VEHICLES, { ...queryParams, page });
 }
 
 export async function getMergedVehicleList(
   pages: number[],
   queryParams?: AdditionalQueryParams
 ): Promise<MultipleCollectionResponse<Vehicle>> {
-  return getMergedList(API_ROUTES.GET_VEHICLES, pages, queryParams);
+  return getMergedList(API_ROUTES.GET_VEHICLES, { ...queryParams, pages });
 }
 
 export async function getVehicle(id: string): Promise<Vehicle> {

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
@@ -7,7 +8,6 @@ import { ROUTES } from '../../constants/routes';
 import { getId } from '../../utils/get-id';
 import { characterCardState } from './atoms';
 import './styles.scss';
-import classNames from 'classnames';
 
 type UrlParams = {
   id: string;
@@ -16,7 +16,7 @@ type UrlParams = {
 export const CharacterCard = () => {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
-  const data = useRecoilValue(characterCardState(id ?? ''));
+  const data = useRecoilValue(characterCardState(id));
 
   if (!data) {
     return <div>No information</div>;
@@ -103,7 +103,7 @@ export const CharacterCard = () => {
                   <div
                     key={item}
                     className="field__link"
-                    // onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
+                    onClick={() => navigate(ROUTES.VEHICLE_CARD.replace(':id', getId(item)))}
                   >
                     {item}
                   </div>
