@@ -17,7 +17,39 @@
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "@typescript-eslint/no-inferrable-types": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/naming-convention": [
+      "warn",
+      {
+        "selector": "variable",
+        "format": ["camelCase", "PascalCase"],
+        "leadingUnderscore": "forbid",
+        "trailingUnderscore": "forbid"
+      },
+      {
+        "selector": "function",
+        "format": ["camelCase"],
+        "leadingUnderscore": "forbid",
+        "trailingUnderscore": "forbid"
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "enumMember",
+        "format": "PascalCase"
+      },
+      {
+        "selector": "typeProperty",
+        "format": ["snake_case", "camelCase"]
+      },
+      {
+        "selector": ["parameterProperty", "objectLiteralProperty"],
+        "format": ["camelCase"]
+      }
+    ]
   }
 }
