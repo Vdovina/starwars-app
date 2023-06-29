@@ -12,7 +12,7 @@ type UrlParams = {
   id: string;
 };
 
-export const SpeciesCard = () => {
+function SpeciesCard() {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
   const data = useRecoilValue(speciesCardState(id));
@@ -65,14 +65,17 @@ export const SpeciesCard = () => {
             </div>
           </Block>
           {!!data.people?.length && (
-            <Block title='People'>
+            <Block title="People">
               <div className="list">
-                {data.people.map((item) => (
+                {data.people.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(
+                        ROUTES.CHARACTER_CARD.replace(':id', getId(item)),
+                      )
+                    }>
                     {item}
                   </div>
                 ))}
@@ -80,14 +83,15 @@ export const SpeciesCard = () => {
             </Block>
           )}
           {!!data.films?.length && (
-            <Block title='Films'>
+            <Block title="Films">
               <div className="list">
-                {data.films.map((item) => (
+                {data.films.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))
+                    }>
                     {item}
                   </div>
                 ))}
@@ -98,4 +102,6 @@ export const SpeciesCard = () => {
       </div>
     </>
   );
-};
+}
+
+export default SpeciesCard;

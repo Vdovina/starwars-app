@@ -12,7 +12,7 @@ type UrlParams = {
   id: string;
 };
 
-export const FilmCard = () => {
+function FilmCard() {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
   const data = useRecoilValue(filmCardState(id));
@@ -47,12 +47,13 @@ export const FilmCard = () => {
           </Block>
           <Block title="Characters">
             <div className="list">
-              {data.characters.map((item) => (
+              {data.characters.map(item => (
                 <div
                   key={item}
                   className="field__link"
-                  onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
-                >
+                  onClick={() =>
+                    navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))
+                  }>
                   {item}
                 </div>
               ))}
@@ -60,12 +61,13 @@ export const FilmCard = () => {
           </Block>
           <Block title="Starships">
             <div className="list">
-              {data.starships.map((item) => (
+              {data.starships.map(item => (
                 <div
                   key={item}
                   className="field__link"
-                  onClick={() => navigate(ROUTES.STARSHIP_CARD.replace(':id', getId(item)))}
-                >
+                  onClick={() =>
+                    navigate(ROUTES.STARSHIP_CARD.replace(':id', getId(item)))
+                  }>
                   {item}
                 </div>
               ))}
@@ -73,12 +75,13 @@ export const FilmCard = () => {
           </Block>
           <Block title="Planets">
             <div className="list">
-              {data.planets.map((item) => (
+              {data.planets.map(item => (
                 <div
                   key={item}
                   className="field__link"
-                  onClick={() => navigate(ROUTES.PLANET_CARD.replace(':id', getId(item)))}
-                >
+                  onClick={() =>
+                    navigate(ROUTES.PLANET_CARD.replace(':id', getId(item)))
+                  }>
                   {item}
                 </div>
               ))}
@@ -86,12 +89,13 @@ export const FilmCard = () => {
           </Block>
           <Block title="Species">
             <div className="list">
-              {data.species.map((item) => (
+              {data.species.map(item => (
                 <div
                   key={item}
                   className="field__link"
-                  onClick={() => navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))}
-                >
+                  onClick={() =>
+                    navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))
+                  }>
                   {item}
                 </div>
               ))}
@@ -101,4 +105,6 @@ export const FilmCard = () => {
       </div>
     </>
   );
-};
+}
+
+export default FilmCard;

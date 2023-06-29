@@ -18,13 +18,18 @@ export const vehiclesState = atom<VehicleListState>({
     get: async ({ get }) => {
       try {
         const searchParam = get(searchValue);
-        const response = await getMergedVehicleList(DEFAULT_PAGES, { searchParam });
+        const response = await getMergedVehicleList(DEFAULT_PAGES, {
+          searchParam,
+        });
         return {
           data: response?.results ?? [],
           total: response?.count ?? 0,
         };
-      } catch (error) {
-        throw error;
+      }
+      catch (error) {
+        return {
+          error: error,
+        };
       }
     },
   }),

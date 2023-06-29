@@ -9,11 +9,17 @@ import { PAGE_SIZE } from '../../constants/constants';
 import { getMergedSpeciesList } from '../../service/species-service';
 import './styles.scss';
 
-export const Species = () => {
+function Species() {
   const navigate = useNavigate();
-  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
+  const [currentSearchValue, setCurrentSearchValue] =
+    useRecoilState(searchValue);
 
-  const { data, loading, onScroll } = useVirtualScrolling(speciesState, getMergedSpeciesList, currentSearchValue, 5000);
+  const { data, loading, onScroll } = useVirtualScrolling(
+    speciesState,
+    getMergedSpeciesList,
+    currentSearchValue,
+    5000,
+  );
 
   return (
     <>
@@ -21,7 +27,11 @@ export const Species = () => {
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput placeholder='Search species' value={currentSearchValue} onChange={setCurrentSearchValue} />
+          <SearchInput
+            placeholder="Search species"
+            value={currentSearchValue}
+            onChange={setCurrentSearchValue}
+          />
         </div>
         <Table
           rows={data?.data ?? []}
@@ -30,9 +40,11 @@ export const Species = () => {
           loading={loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
-          onRowClick={(id) => navigate(ROUTES.SPECIES_CARD.replace(':id', id))}
+          onRowClick={id => navigate(ROUTES.SPECIES_CARD.replace(':id', id))}
         />
       </TableWrapper>
     </>
   );
-};
+}
+
+export default Species;

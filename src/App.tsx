@@ -3,20 +3,21 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { SideBar } from './components/side-bar';
 import { ROUTES } from './constants/routes';
-import { CharacterCard } from './pages/character-card';
-import { Characters } from './pages/characters';
-import { FilmCard } from './pages/film-card';
-import { Films } from './pages/films';
-import { PlanetCard } from './pages/planet-card';
-import { Planets } from './pages/planets';
-import { Species } from './pages/species';
-import { SpeciesCard } from './pages/species-card';
-import { StarshipCard } from './pages/starship-card';
-import { Starships } from './pages/starships';
 import { Loader } from './components/loader';
 import './styles/styles.scss';
-import { Vehicles } from './pages/vehicles';
-import { VehicleCard } from './pages/vehicle-card';
+
+const Films = React.lazy(() => import('./pages/films'));
+const FilmCard = React.lazy(() => import('./pages/film-card'));
+const Characters = React.lazy(() => import('./pages/characters'));
+const CharacterCard = React.lazy(() => import('./pages/character-card'));
+const Planets = React.lazy(() => import('./pages/planets'));
+const PlanetCard = React.lazy(() => import('./pages/planet-card'));
+const Species = React.lazy(() => import('./pages/species'));
+const SpeciesCard = React.lazy(() => import('./pages/species-card'));
+const Starships = React.lazy(() => import('./pages/starships'));
+const StarshipCard = React.lazy(() => import('./pages/starship-card'));
+const Vehicles = React.lazy(() => import('./pages/vehicles'));
+const VehicleCard = React.lazy(() => import('./pages/vehicle-card'));
 
 function App() {
   return (

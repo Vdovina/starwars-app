@@ -8,11 +8,17 @@ import { Table, SearchInput, TableWrapper } from '../../components';
 import { PAGE_SIZE } from '../../constants/constants';
 import { getMergedVehicleList } from '../../service/vehicle-service';
 
-export const Vehicles = () => {
+function Vehicles() {
   const navigate = useNavigate();
-  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
+  const [currentSearchValue, setCurrentSearchValue] =
+    useRecoilState(searchValue);
 
-  const { data, loading, onScroll } = useVirtualScrolling(vehiclesState, getMergedVehicleList, currentSearchValue, 5000);
+  const { data, loading, onScroll } = useVirtualScrolling(
+    vehiclesState,
+    getMergedVehicleList,
+    currentSearchValue,
+    5000,
+  );
 
   return (
     <>
@@ -20,7 +26,11 @@ export const Vehicles = () => {
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput placeholder="Search vehicles" value={currentSearchValue} onChange={setCurrentSearchValue} />
+          <SearchInput
+            placeholder="Search vehicles"
+            value={currentSearchValue}
+            onChange={setCurrentSearchValue}
+          />
         </div>
         <Table
           rows={data?.data ?? []}
@@ -29,9 +39,11 @@ export const Vehicles = () => {
           loading={loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
-          onRowClick={(id) => navigate(ROUTES.VEHICLE_CARD.replace(':id', id))}
+          onRowClick={id => navigate(ROUTES.VEHICLE_CARD.replace(':id', id))}
         />
       </TableWrapper>
     </>
   );
-};
+}
+
+export default Vehicles;

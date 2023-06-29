@@ -9,11 +9,17 @@ import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
 import { getMergedStarshipList } from '../../service/starship-service';
 import './styles.scss';
 
-export const Starships = () => {
+function Starships() {
   const navigate = useNavigate();
-  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
+  const [currentSearchValue, setCurrentSearchValue] =
+    useRecoilState(searchValue);
 
-  const { data, loading, onScroll } = useVirtualScrolling(starshipsState, getMergedStarshipList, currentSearchValue, 5000);
+  const { data, loading, onScroll } = useVirtualScrolling(
+    starshipsState,
+    getMergedStarshipList,
+    currentSearchValue,
+    5000,
+  );
 
   return (
     <>
@@ -21,7 +27,11 @@ export const Starships = () => {
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput placeholder='Search starships' value={currentSearchValue} onChange={setCurrentSearchValue} />
+          <SearchInput
+            placeholder="Search starships"
+            value={currentSearchValue}
+            onChange={setCurrentSearchValue}
+          />
         </div>
         <Table
           rows={data?.data ?? []}
@@ -30,9 +40,11 @@ export const Starships = () => {
           loading={loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
-          onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
+          onRowClick={id => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
         />
       </TableWrapper>
     </>
   );
-};
+}
+
+export default Starships;

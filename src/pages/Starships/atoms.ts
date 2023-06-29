@@ -23,8 +23,11 @@ export const starshipsState = atom({
           data: response?.results ?? [],
           total: response?.count ?? 0,
         };
-      } catch (error) {
-        throw error;
+      }
+      catch (error) {
+        return {
+          error: error,
+        };
       }
     },
   }),

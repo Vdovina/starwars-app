@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import type { CollectionResponse, MultipleCollectionResponse } from '../types/collection-response';
-import type { AdditionalQueryParams, MultipleListQueryParams, SingleListQueryParams } from '../types/query-params';
+import type { MultipleListQueryParams, SingleListQueryParams } from '../types/query-params';
 
 export async function getList<T>(url: string, queryParams?: SingleListQueryParams): Promise<CollectionResponse<T>> {
   const params = new URLSearchParams();

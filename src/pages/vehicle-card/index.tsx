@@ -13,10 +13,10 @@ type UrlParams = {
   id: string;
 };
 
-export const VehicleCard = () => {
+function VehicleCard() {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
-  const data = useRecoilValue<Vehicle | undefined>(vehicleCardState(id ?? ''));
+  const data = useRecoilValue<Vehicle | null>(vehicleCardState(id));
 
   if (!data) {
     return <div>No information</div>;
@@ -72,12 +72,15 @@ export const VehicleCard = () => {
           {!!data.pilots?.length && (
             <Block title="Pilots">
               <div className="list">
-                {data.pilots.map((item) => (
+                {data.pilots.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(
+                        ROUTES.CHARACTER_CARD.replace(':id', getId(item)),
+                      )
+                    }>
                     {item}
                   </div>
                 ))}
@@ -87,12 +90,13 @@ export const VehicleCard = () => {
           {!!data.films?.length && (
             <Block title="Films">
               <div className="list">
-                {data.films.map((item) => (
+                {data.films.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))
+                    }>
                     {item}
                   </div>
                 ))}
@@ -103,4 +107,6 @@ export const VehicleCard = () => {
       </div>
     </>
   );
-};
+}
+
+export default VehicleCard;

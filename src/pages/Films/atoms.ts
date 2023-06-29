@@ -2,7 +2,7 @@ import { atom, selector } from 'recoil';
 import { getFilmList } from '../../service/film-service';
 import type { Film } from '../../types/film';
 
-export const filmsState = atom<Film[]>({
+export const filmsState = atom<Film[] | null>({
   key: 'films/data',
   default: selector({
     key: '#films/data',
@@ -11,7 +11,7 @@ export const filmsState = atom<Film[]>({
         const response = await getFilmList();
         return response?.results ?? [];
       } catch (error) {
-        throw error;
+        return null;
       }
     },
   }),

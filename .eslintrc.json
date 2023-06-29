@@ -15,6 +15,9 @@
   },
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
-    "no-console": "on"
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

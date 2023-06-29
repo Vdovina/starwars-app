@@ -12,7 +12,7 @@ type UrlParams = {
   id: string;
 };
 
-export const StarshipCard = () => {
+function StarshipCard() {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
   const data = useRecoilValue(starshipCardState(id));
@@ -79,12 +79,15 @@ export const StarshipCard = () => {
           {!!data.pilots?.length && (
             <Block title="Pilots">
               <div className="list">
-                {data.pilots.map((item) => (
+                {data.pilots.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.CHARACTER_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(
+                        ROUTES.CHARACTER_CARD.replace(':id', getId(item)),
+                      )
+                    }>
                     {item}
                   </div>
                 ))}
@@ -94,12 +97,13 @@ export const StarshipCard = () => {
           {!!data.films?.length && (
             <Block title="Films">
               <div className="list">
-                {data.films.map((item) => (
+                {data.films.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))
+                    }>
                     {item}
                   </div>
                 ))}
@@ -110,4 +114,6 @@ export const StarshipCard = () => {
       </div>
     </>
   );
-};
+}
+
+export default StarshipCard;

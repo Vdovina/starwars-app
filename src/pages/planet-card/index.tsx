@@ -12,7 +12,7 @@ type UrlParams = {
   id: string;
 };
 
-export const PlanetCard = () => {
+function PlanetCard() {
   const navigate = useNavigate();
   const { id } = useParams<UrlParams>();
   const data = useRecoilValue(planetCardState(id));
@@ -63,12 +63,13 @@ export const PlanetCard = () => {
           {!!data.residents?.length && (
             <Block title="Residents">
               <div className="list">
-                {data.residents.map((item) => (
+                {data.residents.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(ROUTES.SPECIES_CARD.replace(':id', getId(item)))
+                    }>
                     {item}
                   </div>
                 ))}
@@ -78,12 +79,13 @@ export const PlanetCard = () => {
           {!!data.films?.length && (
             <Block title="Films">
               <div className="list">
-                {data.films.map((item) => (
+                {data.films.map(item => (
                   <div
                     key={item}
                     className="field__link"
-                    onClick={() => navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))}
-                  >
+                    onClick={() =>
+                      navigate(ROUTES.FILM_CARD.replace(':id', getId(item)))
+                    }>
                     {item}
                   </div>
                 ))}
@@ -94,4 +96,6 @@ export const PlanetCard = () => {
       </div>
     </>
   );
-};
+}
+
+export default PlanetCard;
