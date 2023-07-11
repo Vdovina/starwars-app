@@ -50,6 +50,6 @@ export async function getMergedList<T>(
     });
 }
 
-export async function getInfo(url: string, id: string | number): Promise<any> {
+export async function getInfo<T>(url: string, id: string | number): Promise<T> {
   return axios.get(url.replace(':id', `${id}`)).then((response) => response.data);
 }

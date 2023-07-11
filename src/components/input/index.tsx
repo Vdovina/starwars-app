@@ -10,7 +10,7 @@ interface InputProps {
   label?: string;
   placeholder?: string;
   value: string | undefined;
-  onChange(value: any): void;
+  onChange(value: string): void;
 }
 
 export const Input = ({ className, clearable = false, firstIcon, label, placeholder = '', value, onChange }: InputProps) => {

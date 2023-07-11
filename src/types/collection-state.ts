@@ -6,5 +6,5 @@ interface SuccessCollectionState<T> {
 }
 
 interface ErrorCollectionState {
-  error: any;
+  error: unknown;
 }

@@ -10,12 +10,7 @@ import { RecoilLoadingStatus } from '../types/recoil-loading-status';
 
 export type FetchCallbackType<T> = (pages: number[], queryParams?: AdditionalQueryParams) => Promise<MultipleCollectionResponse<T>>;
 
-export const useVirtualScrolling = <T>(
-  recoilAtom: RecoilState<CollectionState<T>>,
-  fetchCallback: FetchCallbackType<T>,
-  searchParam?: string,
-  delay?: number
-) => {
+export const useVirtualScrolling = <T>(recoilAtom: RecoilState<CollectionState<T>>, fetchCallback: FetchCallbackType<T>, searchParam?: string, delay?: number) => {
   const [{ state, contents: data }, setData] = useRecoilStateLoadable<CollectionState<T>>(recoilAtom);
   const [loading, setLoading] = useState<LoadingStatus>(state as RecoilLoadingStatus);
 
