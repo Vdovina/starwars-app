@@ -5,7 +5,7 @@ import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
 import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
 import { Table, SearchInput, TableWrapper } from '../../components';
-import { PAGE_SIZE } from '../../constants/constants';
+import { PAGE_SIZE, VIRTUALIZATION_DELAY } from '../../constants/constants';
 import { getMergedVehicleList } from '../../service/vehicle-service';
 
 function Vehicles() {
@@ -17,7 +17,7 @@ function Vehicles() {
     vehiclesState,
     getMergedVehicleList,
     currentSearchValue,
-    5000,
+    VIRTUALIZATION_DELAY,
   );
 
   return (

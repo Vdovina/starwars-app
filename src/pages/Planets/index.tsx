@@ -6,7 +6,7 @@ import { ROUTES } from '../../constants/routes';
 import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
 import { getMergedPlanetList } from '../../service/planet-service';
 import { Table, SearchInput, TableWrapper } from '../../components';
-import { PAGE_SIZE } from '../../constants/constants';
+import { PAGE_SIZE, VIRTUALIZATION_DELAY } from '../../constants/constants';
 import './styles.scss';
 
 function Planets() {
@@ -18,7 +18,7 @@ function Planets() {
     planetsState,
     getMergedPlanetList,
     currentSearchValue,
-    5000,
+    VIRTUALIZATION_DELAY,
   );
 
   return (

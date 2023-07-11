@@ -5,7 +5,7 @@ import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
 import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
 import { Table, SearchInput, TableWrapper } from '../../components';
-import { PAGE_SIZE } from '../../constants/constants';
+import { PAGE_SIZE, VIRTUALIZATION_DELAY } from '../../constants/constants';
 import { getMergedSpeciesList } from '../../service/species-service';
 import './styles.scss';
 
@@ -18,7 +18,7 @@ function Species() {
     speciesState,
     getMergedSpeciesList,
     currentSearchValue,
-    5000,
+    VIRTUALIZATION_DELAY,
   );
 
   return (

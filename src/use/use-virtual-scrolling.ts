@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useRecoilStateLoadable } from 'recoil';
+import { RecoilState, useRecoilStateLoadable } from 'recoil';
 import { LoadingStatus } from '../constants/statuses';
-import { useThrottling } from './use-throttling';
+import { useThrottle } from './use-throttle';
 import { CollectionState } from '../types/collection-state';
 import { MultipleCollectionResponse } from '../types/collection-response';
 import { AdditionalQueryParams } from '../types/query-params';
@@ -11,7 +11,7 @@ import { RecoilLoadingStatus } from '../types/recoil-loading-status';
 export type FetchCallbackType<T> = (pages: number[], queryParams?: AdditionalQueryParams) => Promise<MultipleCollectionResponse<T>>;
 
 export const useVirtualScrolling = <T>(
-  recoilAtom,
+  recoilAtom: RecoilState<CollectionState<T>>,
   fetchCallback: FetchCallbackType<T>,
   searchParam?: string,
   delay?: number
@@ -40,7 +40,6 @@ export const useVirtualScrolling = <T>(
         })
         .catch(() => setLoading(LoadingStatus.Error));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParam, fetchCallback, setData]);
 
   const onScroll = async (pages: number[]) => {
@@ -57,7 +56,7 @@ export const useVirtualScrolling = <T>(
     }
   };
 
-  const { callback } = useThrottling(onScroll, delay);
+  const callback = useThrottle(onScroll, delay);
 
   return { data, loading, onScroll: callback };
 };

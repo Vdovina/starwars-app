@@ -16,21 +16,21 @@
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react-hooks/exhaustive-deps": "off",
-    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-debugger":"off",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": [
       "warn",
       {
         "selector": "variable",
-        "format": ["camelCase", "PascalCase"],
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
         "leadingUnderscore": "forbid",
         "trailingUnderscore": "forbid"
       },
       {
         "selector": "function",
-        "format": ["camelCase"],
+        "format": ["camelCase", "PascalCase"],
         "leadingUnderscore": "forbid",
         "trailingUnderscore": "forbid"
       },
@@ -40,7 +40,7 @@
       },
       {
         "selector": "enumMember",
-        "format": "PascalCase"
+        "format": ["PascalCase"]
       },
       {
         "selector": "typeProperty",

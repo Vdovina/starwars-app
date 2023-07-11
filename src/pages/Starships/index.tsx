@@ -4,7 +4,7 @@ import { starshipsState, searchValue } from './atoms';
 import { columns } from './columns';
 import { ROUTES } from '../../constants/routes';
 import { Table, SearchInput, TableWrapper } from '../../components';
-import { PAGE_SIZE } from '../../constants/constants';
+import { PAGE_SIZE, VIRTUALIZATION_DELAY } from '../../constants/constants';
 import { useVirtualScrolling } from '../../use/use-virtual-scrolling';
 import { getMergedStarshipList } from '../../service/starship-service';
 import './styles.scss';
@@ -18,7 +18,7 @@ function Starships() {
     starshipsState,
     getMergedStarshipList,
     currentSearchValue,
-    5000,
+    VIRTUALIZATION_DELAY,
   );
 
   return (

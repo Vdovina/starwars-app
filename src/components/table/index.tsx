@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { useTable, Column } from 'react-table';
 import { getId } from '../../utils/get-id';
@@ -25,7 +25,7 @@ interface ITableProps<T> {
   onLoad?(pages: number[]): void;
 }
 
-const AVG_ROW_HEIGHT = 54;
+const AVG_ROW_HEIGHT = 48;
 const BUFFERED_ROWS = 5;
 
 export const Table = <T extends object>({
@@ -43,7 +43,11 @@ export const Table = <T extends object>({
   });
   const bodyRef = useRef<HTMLTableElement>(null);
 
-  const onScroll = (e) => {
+  const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    if (!onLoad) {
+      return;
+    }
+
     const firstIndex = Math.max(Math.floor(e.currentTarget.scrollTop / AVG_ROW_HEIGHT) - BUFFERED_ROWS, 0);
     const lastIndex = Math.min(
       Math.ceil(((bodyRef?.current?.offsetHeight ?? 0) + e.currentTarget.scrollTop) / AVG_ROW_HEIGHT - 1 + BUFFERED_ROWS),
@@ -54,7 +58,7 @@ export const Table = <T extends object>({
     const pageRange = Array.from({ length: Math.floor(lastIndex / size) - firstPage + 1 }, (_, i) => index + i);
     const currentPages = Array.from({ length: Math.ceil(rows.length / size) - firstPage }, (_, i) => index + i);
     const expectedPages = pageRange.filter((page) => !currentPages.includes(page));
-    if (onLoad && expectedPages.length) {
+    if (expectedPages.length) {
       onLoad(expectedPages);
     }
   };
