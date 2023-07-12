@@ -26,7 +26,7 @@ exports[`SearchInput Tests render 1`] = `
     <input
       className="input__component input__with-icon"
       onChange={[Function]}
-      placeholder="Search characters"
+      placeholder=""
       value=""
     />
     <div

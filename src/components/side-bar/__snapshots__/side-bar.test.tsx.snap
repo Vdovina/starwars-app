@@ -47,5 +47,11 @@ exports[`SideBar Tests render 1`] = `
   >
     Species
   </Link>
+  <Link
+    className="side-bar__link"
+    to="/vehicles"
+  >
+    Vehicles
+  </Link>
 </div>
 `;

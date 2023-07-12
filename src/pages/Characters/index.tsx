@@ -11,8 +11,7 @@ import './styles.scss';
 
 function Characters() {
   const navigate = useNavigate();
-  const [currentSearchValue, setCurrentSearchValue] =
-    useRecoilState(searchValue);
+  const [currentSearchValue, setCurrentSearchValue] = useRecoilState(searchValue);
 
   const { data, loading, onScroll } = useVirtualScrolling(
     charactersState,
@@ -27,11 +26,7 @@ function Characters() {
 
       <TableWrapper>
         <div className="search-panel">
-          <SearchInput
-            placeholder="Search characters"
-            value={currentSearchValue}
-            onChange={setCurrentSearchValue}
-          />
+          <SearchInput placeholder="Search characters" value={currentSearchValue} onChange={setCurrentSearchValue} />
         </div>
         <Table
           rows={data?.data ?? []}
@@ -40,7 +35,7 @@ function Characters() {
           loading={loading}
           onLoad={onScroll}
           size={PAGE_SIZE}
-          onRowClick={id => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
+          onRowClick={(id) => navigate(ROUTES.CHARACTER_CARD.replace(':id', id))}
         />
       </TableWrapper>
     </>

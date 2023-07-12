@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 
 const DEFAULT_DELAY = 1000;
 
@@ -7,28 +7,28 @@ export const useThrottle = <T>(
   delay: number = DEFAULT_DELAY,
   runAfterTimeout: boolean = false,
 ) => {
-  const [isWaiting, setIsWaiting] = useState(false);
-  const [savedArgs, setSavedArgs] = useState<T[] | null>(null);
+  const isWaiting = useRef<boolean>(false);
+  const savedArgs = useRef<T[] | null>(null);
 
   const throttledCallback = useCallback(
     (...args: T[]) => {
-      if (isWaiting) {
-        setSavedArgs(args);
+      if (isWaiting.current) {
+        savedArgs.current = args;
         return;
       }
 
       callback(...args);
-      setIsWaiting(true);
+      isWaiting.current = true;
 
       setTimeout(() => {
-        setIsWaiting(false);
-        if (runAfterTimeout && savedArgs && JSON.stringify(savedArgs) !== JSON.stringify(args)) {
-          callback(...savedArgs);
-          setSavedArgs(null);
+        isWaiting.current = false;
+        if (runAfterTimeout && savedArgs.current && JSON.stringify(savedArgs.current) !== JSON.stringify(args)) {
+          callback(...savedArgs.current);
+          savedArgs.current = null;
         }
       }, delay);
     },
-    [callback],
+    [callback, delay, runAfterTimeout],
   );
 
   return throttledCallback;

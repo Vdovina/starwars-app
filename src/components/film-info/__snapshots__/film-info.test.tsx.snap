@@ -13,12 +13,12 @@ exports[`FilmInfo Tests render 1`] = `
     className="film-info__info"
   >
     <div
-      className="field-name"
+      className="field__name"
     >
       Episode:
     </div>
     <div
-      className="field-value"
+      className="field__value"
     >
       1
     </div>
@@ -27,12 +27,12 @@ exports[`FilmInfo Tests render 1`] = `
     className="film-info__info"
   >
     <div
-      className="field-name"
+      className="field__name"
     >
       Director:
     </div>
     <div
-      className="field-value"
+      className="field__value"
     >
       DirectorName
     </div>
@@ -41,12 +41,12 @@ exports[`FilmInfo Tests render 1`] = `
     className="film-info__info"
   >
     <div
-      className="field-name"
+      className="field__name"
     >
       Producers:
     </div>
     <div
-      className="field-value"
+      className="field__value"
     >
       ProducerName
     </div>
@@ -55,12 +55,12 @@ exports[`FilmInfo Tests render 1`] = `
     className="film-info__info"
   >
     <div
-      className="field-name"
+      className="field__name"
     >
       Release date:
     </div>
     <div
-      className="field-value"
+      className="field__value"
     >
       2000-01-01
     </div>
